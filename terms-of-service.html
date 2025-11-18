@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service - LogiTrans</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            DEFAULT: "#0a2463",
+            foreground: "#ffffff",
+          },
+          secondary: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          accent: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          muted: {
+            DEFAULT: "#f1f5f9",
+            foreground: "#64748b",
+          },
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  }
+
+  /* Mobile menu animation */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>
+</head>
+<body class="flex min-h-screen flex-col bg-white">
+<header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="container flex h-16 items-center justify-between">
+          <!-- Logo & Business Name -->
+          <div class="flex items-center gap-2">
+            <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+          </div>
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex gap-6">
+            <a href="index.html" class="text-sm font-medium hover:text-primary">Home</a>
+            <a href="services.html" class="text-sm font-medium hover:text-primary">Services</a>
+            <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+            <a href="contact.html" class="text-sm font-medium hover:text-primary">Contact</a>
+          </nav>
+          <!-- CTA Buttons (Desktop) -->
+          <div class="hidden md:flex items-center gap-4">
+            <a href="get-quote.html" class="h-9 flex items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90">
+              Get Quote
+            </a>
+          </div>
+          <!-- Hamburger for Mobile -->
+          <button id="openMobileMenu" class="md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+     <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 hidden bg-[#f5f5f5]">
+        <!-- Top Bar with Logo & Close Button -->
+        <div class="container flex items-center justify-between p-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-6 w-6">
+          <button id="closeMobileMenu" class="text-primary">
+            <!-- X Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <!-- Navigation Links -->
+        <nav class="mt-4">
+          <ul class="flex flex-col items-center gap-4 text-xl">
+            <li>
+              <a href="index.html" class="text-primary hover:text-secondary">Home</a>
+            </li>
+            <li>
+              <a href="services.html" class="text-primary hover:text-secondary">Services</a>
+            </li>
+            <li>
+              <a href="about.html" class="text-primary hover:text-secondary">About</a>
+            </li>
+            <li>
+              <a href="contact.html" class="text-primary hover:text-secondary">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-col gap-4 px-8">
+          <a
+            href="get-quote.html"
+            class="block w-full rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+          >
+            Get Quote
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Toggle Script -->
+      <script>
+        const openMobileMenu = document.getElementById('openMobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+      
+        openMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+        });
+      
+        closeMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      </script>
+
+<main class="flex-1">
+  <!-- Header Section -->
+  <section class="bg-primary py-12 md:py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Terms of Service</h1>
+        <p class="text-white/90">Last Updated: March 31, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms of Service Content -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-600 mb-6">
+            Welcome to LogiTrans. These Terms of Service ("Terms") govern your use of our website, mobile applications, and logistics services (collectively, the "Services") provided by LogiTrans ("we," "us," or "our"). By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use our Services.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">1. Acceptance of Terms</h2>
+          <p class="text-gray-600 mb-6">
+            By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by these Terms, as well as our Privacy Policy and Cookie Policy, which are incorporated herein by reference. These Terms constitute a legally binding agreement between you and LogiTrans.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">2. Eligibility</h2>
+          <p class="text-gray-600 mb-6">
+            You must be at least 18 years old and have the legal capacity to enter into binding contracts to use our Services. If you are using our Services on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">3. Account Registration</h2>
+          <p class="text-gray-600 mb-4">
+            To access certain features of our Services, you may need to create an account. When you register for an account, you agree to:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Provide accurate, current, and complete information</li>
+            <li>Maintain and promptly update your account information</li>
+            <li>Keep your account credentials confidential</li>
+            <li>Be responsible for all activities that occur under your account</li>
+            <li>Notify us immediately of any unauthorized use of your account</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            We reserve the right to suspend or terminate your account if any information provided is inaccurate, outdated, or incomplete, or if we believe you have violated these Terms.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">4. Service Description</h2>
+          <p class="text-gray-600 mb-4">
+            LogiTrans provides logistics and shipping services, including but not limited to:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Air, ocean, and road freight transportation</li>
+            <li>Warehousing and distribution</li>
+            <li>Customs clearance and compliance</li>
+            <li>Supply chain management</li>
+            <li>Tracking and monitoring of shipments</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            The specific services available to you may vary depending on your location, the nature of your shipment, and other factors. We reserve the right to modify, suspend, or discontinue any aspect of our Services at any time without prior notice.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">5. Shipping and Delivery</h2>
+          <p class="text-gray-600 mb-4">
+            When you use our shipping services, you agree to:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Provide accurate and complete information about the shipment, including contents, value, origin, and destination</li>
+            <li>Comply with all applicable laws, regulations, and restrictions regarding the shipment of goods</li>
+            <li>Not ship prohibited or restricted items without proper documentation and authorization</li>
+            <li>Package items properly and securely according to our guidelines</li>
+            <li>Pay all applicable fees, duties, taxes, and charges associated with the shipment</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            Delivery times and estimates provided are approximate and not guaranteed. Various factors beyond our control, such as weather conditions, customs delays, or other unforeseen circumstances, may affect delivery times.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">6. Prohibited Items</h2>
+          <p class="text-gray-600 mb-4">
+            You may not ship items that are prohibited by law or by our policies, including but not limited to:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Illegal substances and narcotics</li>
+            <li>Firearms, weapons, explosives, or ammunition</li>
+            <li>Hazardous materials without proper documentation and packaging</li>
+            <li>Counterfeit goods or items that infringe on intellectual property rights</li>
+            <li>Human remains or body parts</li>
+            <li>Live animals (except as permitted by specific arrangements)</li>
+            <li>Perishable goods without appropriate packaging and handling</li>
+            <li>Cash, currency, or other high-value items without special arrangements</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            We reserve the right to inspect shipments to ensure compliance with these restrictions. If prohibited items are discovered, we may refuse, return, or dispose of the shipment at our discretion, and you may be subject to additional fees and potential legal consequences.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">7. Fees and Payment</h2>
+          <p class="text-gray-600 mb-4">
+            By using our Services, you agree to pay all applicable fees and charges as specified in our pricing schedules or as quoted to you. Payment terms include:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Fees must be paid in full before or upon delivery of services, unless credit terms have been established</li>
+            <li>Prices may be subject to change without notice</li>
+            <li>Additional charges may apply for special handling, customs duties, taxes, or other unforeseen circumstances</li>
+            <li>Payment methods accepted include credit cards, bank transfers, and other methods as specified</li>
+            <li>Late payments may incur interest charges and collection fees</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            You are responsible for all taxes, duties, and other governmental charges applicable to the Services, unless otherwise specified.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">8. Limitation of Liability</h2>
+          <p class="text-gray-600 mb-6">
+            To the maximum extent permitted by applicable law, LogiTrans and its affiliates, officers, employees, agents, partners, and licensors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Your use of or inability to use our Services</li>
+            <li>Any delay, loss, damage, or misdelivery of shipments</li>
+            <li>Any unauthorized access to or use of our servers and/or any personal information stored therein</li>
+            <li>Any interruption or cessation of transmission to or from our Services</li>
+            <li>Any bugs, viruses, trojan horses, or the like that may be transmitted to or through our Services</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            Our liability for any loss or damage shall not exceed the amount paid by you for the specific shipment or service that is the subject of the claim, or $100, whichever is less, unless a higher value has been declared and additional charges paid.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">9. Insurance and Claims</h2>
+          <p class="text-gray-600 mb-6">
+            We offer shipping insurance options for an additional fee. If you choose not to purchase insurance, our liability is limited as described in the Limitation of Liability section. Claims for loss or damage must be submitted in writing within 30 days of the delivery date (or expected delivery date for lost shipments). Claims must include supporting documentation, including proof of value and evidence of damage if applicable.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">10. Intellectual Property</h2>
+          <p class="text-gray-600 mb-6">
+            All content, features, and functionality of our Services, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, software, and the compilation thereof, are the exclusive property of LogiTrans, our licensors, or other content providers and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Services without our prior written consent.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">11. User Content</h2>
+          <p class="text-gray-600 mb-6">
+            You retain ownership of any content you submit to our Services ("User Content"). By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, adapt, publish, translate, distribute, and display such content in connection with providing and promoting our Services. You represent and warrant that you own or have the necessary rights to the User Content and that it does not violate any third party's rights or applicable laws.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">12. Termination</h2>
+          <p class="text-gray-600 mb-6">
+            We may terminate or suspend your access to our Services immediately, without prior notice or liability, for any reason, including without limitation if you breach these Terms. Upon termination, your right to use the Services will immediately cease. All provisions of the Terms which by their nature should survive termination shall survive, including without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">13. Governing Law</h2>
+          <p class="text-gray-600 mb-6">
+            These Terms shall be governed by and construed in accordance with the laws of [Jurisdiction], without regard to its conflict of law provisions. You agree to submit to the personal and exclusive jurisdiction of the courts located within [Jurisdiction] for the resolution of any disputes arising out of or relating to these Terms or our Services.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">14. Changes to Terms</h2>
+          <p class="text-gray-600 mb-6">
+            We reserve the right to modify or replace these Terms at any time at our sole discretion. The most current version will be posted on our website with the "Last Updated" date. Your continued use of our Services after any such changes constitutes your acceptance of the new Terms.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">15. Contact Information</h2>
+          <p class="text-gray-600 mb-6">
+            If you have any questions about these Terms, please contact us at:
+          </p>
+          <div class="bg-gray-50 p-6 rounded-lg mb-6">
+            <p class="text-gray-600 mb-2"><strong>LogiTrans Legal Department</strong></p>
+            <p class="text-gray-600 mb-2">123 Logistics Way</p>
+            <p class="text-gray-600 mb-2">Transport City, TC 10001</p>
+            <p class="text-gray-600 mb-2">Email: legal@logitrans.com</p>
+            <p class="text-gray-600">Phone: +1 (555) 123-4567</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t bg-[#f5f5f5]">
+  <div class="container py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-6 w-6">
+        </div>
+        <p class="text-gray-600 mb-4">
+          Global logistics solutions for businesses of all sizes. Reliable, efficient, and secure shipping
+          services worldwide.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Services</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Air Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Ocean Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Road Transport
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Warehousing
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Supply Chain
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Customs Clearance
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Company</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="about.html" class="text-gray-600 hover:text-secondary">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="text-gray-600 hover:text-secondary">
+              Our Team
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              News & Blog
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Sustainability
+            </a>
+          </li>
+          <li>
+            <a href="privacy-policy.html" class="text-gray-600 hover:text-secondary">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="terms-of-service.html" class="text-gray-600 hover:text-secondary font-medium">
+              Terms of Service
+            </a>
+          </li>
+          <li>
+            <a href="cookie-policy.html" class="text-gray-600 hover:text-secondary">
+              Cookie Policy
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Contact</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mt-0.5 text-secondary">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="text-gray-600">123 Logistics Way, Transport City, TC 10001</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span class="text-gray-600">+1 (555) 123-4567</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="text-gray-600">info@logitrans.com</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <h4 class="font-medium mb-2 text-primary">Subscribe to our newsletter</h4>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Your email" class="w-full max-w-xs rounded-md border border-gray-300 px-3 py-2">
+            <button class="rounded-md border border-secondary px-3 py-2 text-secondary hover:bg-secondary hover:text-white">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-gray-600">
+        © <script>document.write(new Date().getFullYear())</script> LogiTrans. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="text-sm text-gray-600 hover:text-secondary">
+          Privacy Policy
+        </a>
+        <a href="terms-of-service.html" class="text-sm text-gray-600 hover:text-secondary font-medium">
+          Terms of Service
+        </a>
+        <a href="cookie-policy.html" class="text-sm text-gray-600 hover:text-secondary">
+          Cookie Policy
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
+

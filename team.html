@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team - LogiTrans</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            DEFAULT: "#0a2463",
+            foreground: "#ffffff",
+          },
+          secondary: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          accent: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          muted: {
+            DEFAULT: "#f1f5f9",
+            foreground: "#64748b",
+          },
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  }
+
+  /* Mobile menu animation */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>
+</head>
+<body class="flex min-h-screen flex-col bg-white">
+    <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="container flex h-16 items-center justify-between">
+          <!-- Logo & Business Name -->
+          <div class="flex items-center gap-2">
+            <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+          </div>
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex gap-6">
+            <a href="index.html" class="text-sm font-medium hover:text-primary">Home</a>
+            <a href="services.html" class="text-sm font-medium hover:text-primary">Services</a>
+            <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+            <a href="contact.html" class="text-sm font-medium hover:text-primary">Contact</a>
+          </nav>
+          <!-- CTA Buttons (Desktop) -->
+          <div class="hidden md:flex items-center gap-4">
+            <a href="get-quote.html" class="h-9 flex items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90">
+              Get Quote
+            </a>
+          </div>
+          <!-- Hamburger for Mobile -->
+          <button id="openMobileMenu" class="md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+     <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 hidden bg-[#f5f5f5]">
+        <!-- Top Bar with Logo & Close Button -->
+        <div class="container flex items-center justify-between p-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-6 w-6">
+          <button id="closeMobileMenu" class="text-primary">
+            <!-- X Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <!-- Navigation Links -->
+        <nav class="mt-4">
+          <ul class="flex flex-col items-center gap-4 text-xl">
+            <li>
+              <a href="index.html" class="text-primary hover:text-secondary">Home</a>
+            </li>
+            <li>
+              <a href="services.html" class="text-primary hover:text-secondary">Services</a>
+            </li>
+            <li>
+              <a href="about.html" class="text-primary hover:text-secondary">About</a>
+            </li>
+            <li>
+              <a href="contact.html" class="text-primary hover:text-secondary">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-col gap-4 px-8">
+          <a
+            href="get-quote.html"
+            class="block w-full rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+          >
+            Get Quote
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Toggle Script -->
+      <script>
+        const openMobileMenu = document.getElementById('openMobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+      
+        openMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+        });
+      
+        closeMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      </script>
+
+<main class="flex-1">
+  <!-- Hero Section -->
+  <section class="relative">
+    <div class="absolute inset-0 z-0">
+      <img src="https://placehold.co/1920x600" alt="Team meeting" class="h-full w-full object-cover brightness-[0.6]">
+    </div>
+    <div class="container relative z-10 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl text-white">Meet Our Team</h1>
+        <p class="mt-6 text-lg md:text-xl text-white/90 max-w-2xl">
+          Our success is driven by our talented team of logistics experts who are passionate about delivering exceptional service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team Section -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold tracking-tight text-primary mb-4">Leadership Team</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Meet the experienced professionals who guide our company's vision and strategy.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Executive 1 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="Sarah Johnson - CEO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">Sarah Johnson</h3>
+            <p class="text-secondary font-medium mb-4">Chief Executive Officer</p>
+            <p class="text-gray-600 mb-4">
+              With over 20 years of experience in logistics and supply chain management, Sarah has led LogiTrans through a period of unprecedented growth and innovation.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive 2 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="Michael Chen - COO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">Michael Chen</h3>
+            <p class="text-secondary font-medium mb-4">Chief Operations Officer</p>
+            <p class="text-gray-600 mb-4">
+              Michael oversees our global operations, ensuring that we deliver consistent, high-quality service across all regions. His focus on operational excellence has been key to our success.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive 3 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="Emma Rodriguez - CTO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">Emma Rodriguez</h3>
+            <p class="text-secondary font-medium mb-4">Chief Technology Officer</p>
+            <p class="text-gray-600 mb-4">
+              Emma leads our technology initiatives, driving innovation in our tracking systems, customer platforms, and internal operations. Her vision has transformed how we deliver logistics services.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive 4 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="David Wilson - CFO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">David Wilson</h3>
+            <p class="text-secondary font-medium mb-4">Chief Financial Officer</p>
+            <p class="text-gray-600 mb-4">
+              David manages our financial strategy and operations, ensuring that we maintain a strong financial foundation while investing in growth and innovation. His expertise has been vital to our expansion.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive 5 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="Sophia Kim - CHRO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">Sophia Kim</h3>
+            <p class="text-secondary font-medium mb-4">Chief Human Resources Officer</p>
+            <p class="text-gray-600 mb-4">
+              Sophia leads our people strategy, focusing on talent acquisition, development, and creating a positive company culture. Her leadership has made LogiTrans a top employer in the logistics industry.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive 6 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/400x300" alt="James Thompson - CCO" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-1">James Thompson</h3>
+            <p class="text-secondary font-medium mb-4">Chief Commercial Officer</p>
+            <p class="text-gray-600 mb-4">
+              James oversees our commercial strategy, focusing on business development, marketing, and customer relationships. His customer-centric approach has driven our growth in key markets.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Department Heads Section -->
+  <section class="py-16 md:py-24 bg-[#f5f5f5]">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold tracking-tight text-primary mb-4">Department Leaders</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Meet the talented individuals who lead our specialized departments and drive excellence in their areas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Department Head 1 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Robert Garcia - Global Air Freight" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Robert Garcia</h3>
+            <p class="text-secondary font-medium mb-2">Global Air Freight Director</p>
+            <p class="text-gray-600 text-sm">
+              15+ years experience in air freight logistics and operations management.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 2 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Linda Patel - Ocean Freight" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Linda Patel</h3>
+            <p class="text-secondary font-medium mb-2">Ocean Freight Director</p>
+            <p class="text-gray-600 text-sm">
+              Expert in international shipping regulations and ocean freight operations.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 3 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Thomas Brown - Road Transport" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Thomas Brown</h3>
+            <p class="text-secondary font-medium mb-2">Road Transport Director</p>
+            <p class="text-gray-600 text-sm">
+              Specializes in optimizing road transport networks and fleet management.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 4 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Maria Santos - Warehousing" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Maria Santos</h3>
+            <p class="text-secondary font-medium mb-2">Warehousing Director</p>
+            <p class="text-gray-600 text-sm">
+              Expert in warehouse management systems and inventory optimization.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 5 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Daniel Lee - Customer Service" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Daniel Lee</h3>
+            <p class="text-secondary font-medium mb-2">Customer Service Director</p>
+            <p class="text-gray-600 text-sm">
+              Dedicated to creating exceptional customer experiences and service excellence.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 6 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Olivia Williams - IT" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Olivia Williams</h3>
+            <p class="text-secondary font-medium mb-2">IT Director</p>
+            <p class="text-gray-600 text-sm">
+              Leads our technology infrastructure and digital transformation initiatives.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 7 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Alexander Nguyen - Customs" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Alexander Nguyen</h3>
+            <p class="text-secondary font-medium mb-2">Customs Compliance Director</p>
+            <p class="text-gray-600 text-sm">
+              Expert in international trade regulations and customs procedures.
+            </p>
+          </div>
+        </div>
+
+        <!-- Department Head 8 -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://placehold.co/400x400" alt="Rachel Cohen - Sustainability" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-primary mb-1">Rachel Cohen</h3>
+            <p class="text-secondary font-medium mb-2">Sustainability Director</p>
+            <p class="text-gray-600 text-sm">
+              Leads our environmental initiatives and sustainable logistics practices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Our Team Section -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="p-8 md:p-12">
+            <h2 class="text-3xl font-bold tracking-tight text-primary mb-4">Join Our Team</h2>
+            <p class="text-gray-600 mb-6">
+              At LogiTrans, we're always looking for talented individuals who are passionate about logistics and customer service. We offer competitive benefits, opportunities for growth, and a collaborative work environment.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Our team members enjoy:
+            </p>
+            <ul class="space-y-2 mb-8">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mt-0.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Competitive salary and benefits</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mt-0.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Professional development opportunities</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mt-0.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Global career paths</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mt-0.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Inclusive and diverse workplace</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mt-0.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Work-life balance initiatives</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-block rounded-md bg-primary px-5 py-3 text-base font-medium text-white hover:bg-primary/90">
+              View Open Positions
+            </a>
+          </div>
+          <div class="bg-[#f5f5f5] p-8 md:p-12 flex items-center justify-center">
+            <img src="https://placehold.co/600x400" alt="Team collaboration" class="rounded-lg shadow-md max-w-full h-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24 bg-primary text-white">
+    <div class="container">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Want to learn more about our team?</h2>
+          <p class="mt-4 text-white/90 max-w-xl">
+            Contact us today to schedule a meeting with our experts and discover how our team can help solve your logistics challenges.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="contact.html" class="rounded-md bg-secondary px-5 py-3 text-base font-medium text-white hover:bg-secondary/90 flex items-center justify-center">
+            Contact Us
+          </a>
+          <a href="about.html" class="rounded-md bg-transparent border border-white px-5 py-3 text-base font-medium text-white hover:bg-white hover:text-primary flex items-center justify-center">
+            About Our Company
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t bg-[#f5f5f5]">
+  <div class="container py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-6 w-6">
+        </div>
+        <p class="text-gray-600 mb-4">
+          Global logistics solutions for businesses of all sizes. Reliable, efficient, and secure shipping
+          services worldwide.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Services</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Air Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Ocean Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Road Transport
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Warehousing
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Supply Chain
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Customs Clearance
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Company</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="about.html" class="text-gray-600 hover:text-secondary">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="text-gray-600 hover:text-secondary">
+              Our Team
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              News & Blog
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Sustainability
+            </a>
+          </li>
+          <li>
+            <a href="privacy-policy.html" class="text-gray-600 hover:text-secondary">
+              Privacy Policy
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Contact</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mt-0.5 text-secondary">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="text-gray-600">123 Logistics Way, Transport City, TC 10001</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span class="text-gray-600">+1 (555) 123-4567</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="text-gray-600">info@logitrans.com</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <h4 class="font-medium mb-2 text-primary">Subscribe to our newsletter</h4>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Your email" class="w-full max-w-xs rounded-md border border-gray-300 px-3 py-2">
+            <button class="rounded-md border border-secondary px-3 py-2 text-secondary hover:bg-secondary hover:text-white">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-gray-600">
+        © <script>document.write(new Date().getFullYear())</script> LogiTrans. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="text-sm text-gray-600 hover:text-secondary">
+          Privacy Policy
+        </a>
+        <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+          Terms of Service
+        </a>
+        <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+          Cookie Policy
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
+

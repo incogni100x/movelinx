@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogiTrans - Global Logistics Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: "#0a2463",
+              foreground: "#ffffff",
+            },
+            secondary: {
+              DEFAULT: "#c26943",
+              foreground: "#ffffff",
+            },
+            accent: {
+              DEFAULT: "#c26943",
+              foreground: "#ffffff",
+            },
+            muted: {
+              DEFAULT: "#f1f5f9",
+              foreground: "#64748b",
+            },
+          },
+          fontFamily: {
+            sans: ['Instrument Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+      }
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white font-sans">
+    <!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <div class="container flex h-16 items-center justify-between">
+      <!-- Logo & Business Name -->
+      <div class="flex items-center gap-2">
+        <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+      </div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-6">
+        <a href="index.html" class="text-sm font-medium hover:text-primary">Home</a>
+        <a href="services.html" class="text-sm font-medium hover:text-primary">Services</a>
+        <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+        <a href="contact.html" class="text-sm font-medium hover:text-primary">Contact</a>
+      </nav>
+      <!-- CTA Buttons (Desktop) -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="get-quote.html" class="h-9 flex items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90">
+          Get Quote
+        </a>
+      </div>
+      <!-- Hamburger for Mobile -->
+      <button id="openMobileMenu" class="md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+ <!-- Mobile Menu Overlay -->
+<div id="mobileMenu" class="fixed inset-0 z-50 hidden bg-[#f5f5f5]">
+        <!-- Top Bar with Logo & Close Button -->
+        <div class="container flex items-center justify-between p-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+          <button id="closeMobileMenu" class="text-primary">
+        <!-- X Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="mt-4">
+      <ul class="flex flex-col items-center gap-4 text-xl">
+        <li>
+          <a href="#" class="text-primary hover:text-secondary">Home</a>
+        </li>
+        <li>
+          <a href="services.html" class="text-primary hover:text-secondary">Services</a>
+        </li>
+        <li>
+          <a href="about.html" class="text-primary hover:text-secondary">About</a>
+        </li>
+        <li>
+          <a href="contact.html" class="text-primary hover:text-secondary">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex flex-col gap-4 px-8">
+      <a
+        href="get-quote.html"
+        class="block w-full rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+      >
+        Get Quote
+      </a>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const openMobileMenu = document.getElementById('openMobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+  
+    openMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+    });
+  
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  </script>
+  
+  
+  <main class="flex-1">
+    <!-- Hero Section with Search Bar -->
+    <section class="relative">
+        <div class="absolute inset-0 z-0">
+          <img
+            src="https://placehold.co/1920x800"
+            alt="Logistics and transportation"
+            class="h-full w-full object-cover brightness-[0.7]"
+          />
+        </div>
+        <div class="container relative z-10 py-24 md:py-32 lg:py-40">
+          <div class="mx-auto max-w-3xl text-center text-white">
+            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              Global Logistics Solutions for Your Business
+            </h1>
+            <p class="mt-6 text-lg md:text-xl">
+              Fast, reliable, and secure shipping services worldwide. Track your shipments and manage your logistics with ease.
+            </p>
+      
+            <div class="mt-10 flex flex-col items-center">
+              <!-- Search Box Container -->
+              <div class="w-full max-w-2xl rounded-lg bg-white/10 backdrop-blur-md p-2">
+                <!-- Use flex-col on mobile, row on desktop -->
+                <div class="flex flex-col sm:flex-row gap-2 w-full">
+                  <!-- Tracking Input -->
+                  <div class="relative flex-grow">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input
+                      type="text"
+                      placeholder="Enter tracking number, container ID or reference number"
+                      class="pl-9 h-11 w-full rounded-md bg-white text-black"
+                    />
+                  </div>
+                  <!-- Track Now Button -->
+                  <button
+                    class="w-full sm:w-auto h-11 shrink-0 rounded-md bg-secondary px-8 text-sm font-medium text-white hover:bg-secondary/90"
+                  >
+                    Track Now
+                  </button>
+                </div>
+              </div>
+      
+              <!-- Help Text -->
+              <p class="mt-3 text-sm text-white/80">
+                Need help?
+                <a href="#" class="text-secondary hover:underline underline-offset-2">
+                  Contact our support team
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+    <!-- Services Section -->
+    <section class="py-16 md:py-24 bg-[#f5f5f5]">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-primary">Our Logistics Services</h2>
+          <p class="mt-4 text-muted-foreground max-w-2xl mx-auto text-gray-600">
+            Comprehensive logistics solutions tailored to meet your business needs with efficiency and reliability.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Air Freight" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Air Freight</h3>
+            <p class="text-gray-600">Fast and reliable air freight services for time-sensitive shipments worldwide.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Ocean Freight" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Ocean Freight</h3>
+            <p class="text-gray-600">Cost-effective ocean freight solutions for large volume shipments globally.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Road Transport" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Road Transport</h3>
+            <p class="text-gray-600">Efficient road transportation services with extensive network coverage.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Warehousing" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Warehousing</h3>
+            <p class="text-gray-600">Secure warehousing and distribution services with advanced inventory management.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Supply Chain" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Supply Chain</h3>
+            <p class="text-gray-600">End-to-end supply chain solutions optimized for efficiency and cost-effectiveness.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-t-2 border-secondary">
+            <div class="mb-4 h-48 overflow-hidden rounded-md">
+              <img src="https://placehold.co/400x300" alt="Customs Clearance" class="h-full w-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Customs Clearance</h3>
+            <p class="text-gray-600">Expert customs clearance services to ensure smooth international shipping.</p>
+            <a href="#" class="mt-4 inline-flex items-center text-secondary hover:underline">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- FAQ Section (Replacing Why Choose Us) -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-primary">Frequently Asked Questions</h2>
+        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+          Find answers to common questions about our logistics services and how we can help your business succeed.
+        </p>
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">How do I track my shipment?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                You can easily track your shipment by entering your tracking number in the search bar at the top of our website. Alternatively, you can visit our dedicated tracking page or contact our customer service team for assistance.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">What shipping options do you offer?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                We offer a comprehensive range of shipping options including air freight, ocean freight, road transport, and express delivery services. Our solutions can be tailored to meet your specific needs, whether you're shipping documents, small parcels, or large cargo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">How do I get a shipping quote?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                You can get an instant shipping quote by clicking the "Get Quote" button on our website and filling out the required information about your shipment. For more complex shipping needs, our team is available to provide personalized quotes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">What areas do you service?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                We operate globally with a network covering over 150 countries and territories. Our extensive logistics network allows us to provide reliable shipping services to virtually any destination worldwide, with specialized expertise in major trade routes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">How do you handle customs clearance?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                Our customs clearance experts handle all documentation and regulatory requirements for international shipments. We ensure compliance with local customs regulations and work to minimize delays and additional costs associated with customs procedures.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="mb-6 bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="border-b border-gray-100">
+            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+              <span class="text-lg font-medium text-primary">What if my shipment is delayed or damaged?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="px-6 py-4 hidden">
+              <p class="text-gray-600">
+                We have comprehensive policies for handling delays and damages. In case of any issues, please contact our customer service team immediately. We offer insurance options for valuable shipments and work diligently to resolve any problems that may arise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Testimonials -->
+    <section class="py-16 md:py-24 bg-[#f5f5f5]">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-primary">What Our Clients Say</h2>
+          <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about our logistics services.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+              </svg>
+            </div>
+            <p class="mb-4 italic">LogiTrans has transformed our supply chain with their efficient and reliable logistics solutions. Their global network and expertise have been invaluable to our business growth.</p>
+            <div>
+              <p class="font-bold text-primary">Sarah Johnson</p>
+              <p class="text-sm text-gray-600">Supply Chain Director, TechCorp Inc.</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+              </svg>
+            </div>
+            <p class="mb-4 italic">The real-time tracking and transparency provided by LogiTrans give us complete visibility of our shipments. Their customer service is exceptional and always responsive.</p>
+            <div>
+              <p class="font-bold text-primary">Michael Chen</p>
+              <p class="text-sm text-gray-600">Operations Manager, Global Retail</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+              </svg>
+            </div>
+            <p class="mb-4 italic">We've been working with LogiTrans for over 5 years, and they consistently deliver on their promises. Their customs clearance expertise has saved us time and money.</p>
+            <div>
+              <p class="font-bold text-primary">Emma Rodriguez</p>
+              <p class="text-sm text-gray-600">Import Manager, Manufacturing Solutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 bg-primary text-white">
+      <div class="container">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="max-w-2xl">
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to optimize your logistics?</h2>
+            <p class="mt-4 text-white/90 max-w-xl">
+              Contact our team today to discuss how our logistics solutions can help your business grow and succeed
+              in the global market.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="get-quote.html" class="rounded-md bg-secondary px-5 py-3 text-base font-medium text-white hover:bg-secondary/90 flex items-center justify-center">
+              Get a Quote
+            </a>
+            <a href="#" class="rounded-md bg-transparent border border-white px-5 py-3 text-base font-medium text-white hover:bg-white hover:text-primary flex items-center justify-center">
+              Contact Sales
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t bg-[#f5f5f5]">
+    <div class="container py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+          </div>
+          <p class="text-gray-600 mb-4">
+            Global logistics solutions for businesses of all sizes. Reliable, efficient, and secure shipping
+            services worldwide.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Services</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Air Freight
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Ocean Freight
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Road Transport
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Warehousing
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Supply Chain
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Customs Clearance
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Company</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Our Team
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Careers
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                News & Blog
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Sustainability
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Locations
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Contact</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mt-0.5 text-secondary">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="text-gray-600">123 Logistics Way, Transport City, TC 10001</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span class="text-gray-600">+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span class="text-gray-600">info@logitrans.com</span>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <h4 class="font-medium mb-2 text-primary">Subscribe to our newsletter</h4>
+            <div class="flex gap-2">
+              <input type="email" placeholder="Your email" class="w-full max-w-xs rounded-md border border-gray-300 px-3 py-2">
+              <button class="rounded-md border border-secondary px-3 py-2 text-secondary hover:bg-secondary hover:text-white">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-gray-600">
+          © <script>document.write(new Date().getFullYear())</script> LogiTrans. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Privacy Policy
+          </a>
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Terms of Service
+          </a>
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Cookie Policy
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function toggleFAQ(element) {
+      // Toggle the active state of the button
+      element.classList.toggle('active');
+      
+      // Find the answer container
+      const answer = element.nextElementSibling;
+      
+      // Toggle the visibility of the answer
+      if (answer.classList.contains('hidden')) {
+        answer.classList.remove('hidden');
+        element.querySelector('svg').classList.add('rotate-180');
+      } else {
+        answer.classList.add('hidden');
+        element.querySelector('svg').classList.remove('rotate-180');
+      }
+    }
+  </script>
+</body>
+</html>
+

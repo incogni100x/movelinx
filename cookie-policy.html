@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Policy - LogiTrans</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            DEFAULT: "#0a2463",
+            foreground: "#ffffff",
+          },
+          secondary: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          accent: {
+            DEFAULT: "#c26943",
+            foreground: "#ffffff",
+          },
+          muted: {
+            DEFAULT: "#f1f5f9",
+            foreground: "#64748b",
+          },
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  }
+
+  /* Mobile menu animation */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>
+</head>
+<body class="flex min-h-screen flex-col bg-white">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <div class="container flex h-16 items-center justify-between">
+      <!-- Logo & Business Name -->
+      <div class="flex items-center gap-2">
+        <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+      </div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-6">
+        <a href="index.html" class="text-sm font-medium hover:text-primary">Home</a>
+        <a href="services.html" class="text-sm font-medium hover:text-primary">Services</a>
+        <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+        <a href="contact.html" class="text-sm font-medium hover:text-primary">Contact</a>
+      </nav>
+      <!-- CTA Buttons (Desktop) -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="get-quote.html" class="h-9 flex items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90">
+          Get Quote
+        </a>
+      </div>
+      <!-- Hamburger for Mobile -->
+      <button id="openMobileMenu" class="md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+ <!-- Mobile Menu Overlay -->
+<div id="mobileMenu" class="fixed inset-0 z-50 hidden bg-[#f5f5f5]">
+    <!-- Top Bar with Logo & Close Button -->
+    <div class="container flex items-center justify-between p-4">
+      <img src="urban.svg" alt="LogiTrans Logo" class="h-6 w-6">
+      <button id="closeMobileMenu" class="text-primary">
+        <!-- X Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="mt-4">
+      <ul class="flex flex-col items-center gap-4 text-xl">
+        <li>
+          <a href="index.html" class="text-primary hover:text-secondary">Home</a>
+        </li>
+        <li>
+          <a href="services.html" class="text-primary hover:text-secondary">Services</a>
+        </li>
+        <li>
+          <a href="about.html" class="text-primary hover:text-secondary">About</a>
+        </li>
+        <li>
+          <a href="contact.html" class="text-primary hover:text-secondary">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex flex-col gap-4 px-8">
+      <a
+        href="get-quote.html"
+        class="block w-full rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+      >
+        Get Quote
+      </a>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const openMobileMenu = document.getElementById('openMobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+  
+    openMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+    });
+  
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  </script>
+
+<main class="flex-1">
+  <!-- Header Section -->
+  <section class="bg-primary py-12 md:py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Cookie Policy</h1>
+        <p class="text-white/90">Last Updated: March 31, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cookie Policy Content -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-600 mb-6">
+            This Cookie Policy explains how LogiTrans ("we," "us," or "our") uses cookies and similar technologies on our website and mobile applications. This policy provides you with information about what cookies are, what types we use, and how you can control them.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">What Are Cookies?</h2>
+          <p class="text-gray-600 mb-6">
+            Cookies are small text files that are stored on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used to make websites work more efficiently, provide a better user experience, and give website owners information about how their sites are used.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Cookies are not harmful and do not contain viruses or personal information like credit card details. They simply help websites remember your preferences and actions, making your browsing experience more convenient.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Types of Cookies We Use</h2>
+          <p class="text-gray-600 mb-4">
+            We use different types of cookies for various purposes:
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Essential Cookies</h3>
+          <p class="text-gray-600 mb-6">
+            These cookies are necessary for the website to function properly. They enable basic functions like page navigation, secure areas access, and remembering your preferences. The website cannot function properly without these cookies, and they cannot be disabled in our systems.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Performance and Analytics Cookies</h3>
+          <p class="text-gray-600 mb-6">
+            These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They provide us with valuable insights about which pages are most frequently visited, how long visitors stay on a page, and if they encounter any error messages. This helps us improve the performance and user experience of our website.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Functionality Cookies</h3>
+          <p class="text-gray-600 mb-6">
+            These cookies allow the website to remember choices you make (such as your username, language, or region) and provide enhanced, more personal features. They may also be used to provide services you have requested, such as watching a video or commenting on a blog. The information these cookies collect may be anonymized, and they cannot track your browsing activity on other websites.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Targeting and Advertising Cookies</h3>
+          <p class="text-gray-600 mb-6">
+            These cookies are used to deliver advertisements that are more relevant to you and your interests. They are also used to limit the number of times you see an advertisement and help measure the effectiveness of advertising campaigns. They remember that you have visited a website and this information may be shared with other organizations, such as advertisers.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Third-Party Cookies</h2>
+          <p class="text-gray-600 mb-6">
+            In addition to our own cookies, we may also use various third-party cookies to report usage statistics, deliver advertisements, and so on. These cookies may track your browsing activity across multiple websites and build a profile of your interests to show you relevant content and advertisements.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Some of the third-party services we use include:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Google Analytics (for website analytics and performance tracking)</li>
+            <li>Google Ads (for advertising and remarketing)</li>
+            <li>Facebook Pixel (for advertising and conversion tracking)</li>
+            <li>LinkedIn Insight Tag (for advertising and analytics)</li>
+            <li>Hotjar (for user behavior analysis)</li>
+          </ul>
+          <p class="text-gray-600 mb-6">
+            Each of these services has its own privacy policy and cookie usage, which you can find on their respective websites.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">How We Use Cookies</h2>
+          <p class="text-gray-600 mb-4">
+            We use cookies for various purposes, including:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li>Authenticating users and maintaining session information</li>
+            <li>Remembering your preferences and settings</li>
+            <li>Tracking your use of our website to improve its performance and user experience</li>
+            <li>Providing personalized content and recommendations</li>
+            <li>Analyzing traffic patterns and user behavior</li>
+            <li>Delivering targeted advertisements based on your interests</li>
+            <li>Preventing fraud and enhancing security</li>
+          </ul>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Cookie Duration</h2>
+          <p class="text-gray-600 mb-4">
+            Cookies can remain on your device for different periods of time:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li><strong>Session Cookies:</strong> These are temporary cookies that exist only during your browser session. They are deleted from your device when you close your browser.</li>
+            <li><strong>Persistent Cookies:</strong> These cookies remain on your device after you close your browser and may be used by your browser on subsequent visits to our website. They remain on your device until they expire or until you delete them manually.</li>
+          </ul>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Managing and Controlling Cookies</h2>
+          <p class="text-gray-600 mb-6">
+            You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences in the following ways:
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Browser Settings</h3>
+          <p class="text-gray-600 mb-6">
+            Most web browsers allow you to manage your cookie preferences through their settings. You can usually find these settings in the "options" or "preferences" menu of your browser. You can set your browser to block or alert you about cookies, delete cookies, or browse our website in a "private" or "incognito" mode.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Please note that if you choose to block or delete cookies, you may not be able to access certain areas or features of our website, and some services may not function properly.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Cookie Consent Tool</h3>
+          <p class="text-gray-600 mb-6">
+            When you first visit our website, you will be presented with a cookie banner that allows you to accept or decline non-essential cookies. You can change your preferences at any time by clicking on the "Cookie Settings" link in the footer of our website.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-primary mt-6 mb-3">Third-Party Opt-Out Tools</h3>
+          <p class="text-gray-600 mb-6">
+            For third-party cookies used for advertising, you can opt out of personalized advertising by visiting:
+          </p>
+          <ul class="list-disc pl-6 mb-6 text-gray-600">
+            <li><a href="http://www.aboutads.info/choices/" class="text-primary hover:underline">Digital Advertising Alliance</a></li>
+            <li><a href="http://www.youronlinechoices.eu/" class="text-primary hover:underline">European Interactive Digital Advertising Alliance</a></li>
+            <li><a href="http://optout.networkadvertising.org/" class="text-primary hover:underline">Network Advertising Initiative</a></li>
+          </ul>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Do Not Track Signals</h2>
+          <p class="text-gray-600 mb-6">
+            Some browsers have a "Do Not Track" feature that signals to websites that you visit that you do not want to have your online activity tracked. Due to the lack of a common understanding of how to interpret the DNT signal, our website does not currently respond to browser DNT signals.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Updates to This Cookie Policy</h2>
+          <p class="text-gray-600 mb-6">
+            We may update this Cookie Policy from time to time to reflect changes in technology, regulation, or our business practices. Any changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this policy periodically to stay informed about our use of cookies.
+          </p>
+          
+          <h2 class="text-xl font-bold text-primary mt-8 mb-4">Contact Us</h2>
+          <p class="text-gray-600 mb-6">
+            If you have any questions or concerns about our use of cookies or this Cookie Policy, please contact us at:
+          </p>
+          <div class="bg-gray-50 p-6 rounded-lg mb-6">
+            <p class="text-gray-600 mb-2"><strong>LogiTrans Privacy Office</strong></p>
+            <p class="text-gray-600 mb-2">123 Logistics Way</p>
+            <p class="text-gray-600 mb-2">Transport City, TC 10001</p>
+            <p class="text-gray-600 mb-2">Email: privacy@logitrans.com</p>
+            <p class="text-gray-600">Phone: +1 (555) 123-4567</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t bg-[#f5f5f5]">
+  <div class="container py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <img src="urban.svg" alt="LogiTrans Logo" class="h-8 w-auto">
+        </div>
+        <p class="text-gray-600 mb-4">
+          Global logistics solutions for businesses of all sizes. Reliable, efficient, and secure shipping
+          services worldwide.
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Services</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Air Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Ocean Freight
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Road Transport
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Warehousing
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Supply Chain
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Customs Clearance
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Company</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="about.html" class="text-gray-600 hover:text-secondary">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="team.html" class="text-gray-600 hover:text-secondary">
+              Our Team
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              News & Blog
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              Sustainability
+            </a>
+          </li>
+          <li>
+            <a href="privacy-policy.html" class="text-gray-600 hover:text-secondary">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a href="terms-of-service.html" class="text-gray-600 hover:text-secondary">
+              Terms of Service
+            </a>
+          </li>
+          <li>
+            <a href="cookie-policy.html" class="text-gray-600 hover:text-secondary font-medium">
+              Cookie Policy
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">Contact</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mt-0.5 text-secondary">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="text-gray-600">123 Logistics Way, Transport City, TC 10001</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span class="text-gray-600">+1 (555) 123-4567</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="text-gray-600">info@logitrans.com</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <h4 class="font-medium mb-2 text-primary">Subscribe to our newsletter</h4>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Your email" class="w-full max-w-xs rounded-md border border-gray-300 px-3 py-2">
+            <button class="rounded-md border border-secondary px-3 py-2 text-secondary hover:bg-secondary hover:text-white">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-gray-600">
+        © <script>document.write(new Date().getFullYear())</script> LogiTrans. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="text-sm text-gray-600 hover:text-secondary">
+          Privacy Policy
+        </a>
+        <a href="terms-of-service.html" class="text-sm text-gray-600 hover:text-secondary">
+          Terms of Service
+        </a>
+        <a href="cookie-policy.html" class="text-sm text-gray-600 hover:text-secondary font-medium">
+          Cookie Policy
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
+
