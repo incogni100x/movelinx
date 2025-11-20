@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms of Service - LogiTrans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -26,12 +29,21 @@
             DEFAULT: "#f1f5f9",
             foreground: "#64748b",
           },
+        },
+        fontFamily: {
+          sans: ['Archivo', 'sans-serif'],
         }
       }
     }
   }
 </script>
 <style type="text/tailwindcss">
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   @layer utilities {
     .container {
       @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -64,7 +76,7 @@
   }
 </style>
 </head>
-<body class="flex min-h-screen flex-col bg-white">
+<body class="flex min-h-screen flex-col bg-white font-sans">
 <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div class="container flex h-16 items-center justify-between">
           <!-- Logo & Business Name -->

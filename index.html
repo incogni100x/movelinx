@@ -6,7 +6,7 @@
   <title>LogiTrans - Global Logistics Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -31,13 +31,19 @@
             },
           },
           fontFamily: {
-            sans: ['Instrument Sans', 'sans-serif'],
+            sans: ['Archivo', 'sans-serif'],
           }
         }
       }
     }
   </script>
   <style type="text/tailwindcss">
+    :root {
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     @layer utilities {
       .container {
         @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -135,15 +141,15 @@
   
   <main class="flex-1">
     <!-- Hero Section with Search Bar -->
-    <section class="relative">
-        <div class="absolute inset-0 z-0">
+    <section class="relative min-h-screen md:min-h-[80vh]">
+        <div class="absolute inset-0 z-0 h-full w-full">
           <img
             src="hero.avif"
             alt="Logistics and transportation"
-            class="h-full w-full object-cover brightness-[0.7]"
+            class="h-full w-full object-cover object-center brightness-[0.7]"
           />
         </div>
-        <div class="container relative z-10 py-24 md:py-32 lg:py-40">
+        <div class="container relative z-10 flex items-center justify-center min-h-screen md:min-h-[80vh] py-24 md:py-32 lg:py-40">
           <div class="mx-auto max-w-3xl text-center text-white">
             <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               Global Logistics Solutions for Your Business
