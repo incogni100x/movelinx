@@ -57,15 +57,19 @@ movelinx/
 
 ## Pages
 
-- `index.html` - Homepage
-- `about.html` - About Us
-- `services.html` - Services
-- `contact.html` - Contact
-- `team.html` - Our Team
-- `track-shipment.html` - Track Shipment
-- `privacy-policy.html` - Privacy Policy
-- `terms-of-service.html` - Terms of Service
-- `cookie-policy.html` - Cookie Policy
+The site uses clean URLs (without `.html` extensions):
+
+- `/` - Homepage
+- `/about` - About Us
+- `/services` - Services
+- `/contact` - Contact
+- `/team` - Our Team
+- `/track-shipment` - Track Shipment
+- `/privacy-policy` - Privacy Policy
+- `/terms-of-service` - Terms of Service
+- `/cookie-policy` - Cookie Policy
+
+**Note:** For production deployment, you'll need a web server configured to rewrite clean URLs to the corresponding HTML files (e.g., `/services` → `services.html`). The Vite dev server handles this automatically during development.
 
 ## Technologies
 

@@ -3,6 +3,12 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
+  server: {
+    // Handle clean URLs in development
+    fs: {
+      strict: false,
+    },
+  },
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -20,5 +26,33 @@ export default defineConfig({
     },
   },
   publicDir: 'public',
+  // Plugin to handle clean URLs in dev server
+  plugins: [
+    {
+      name: 'clean-urls',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          // Map clean URLs to HTML files
+          const urlMap = {
+            '/': '/index.html',
+            '/services': '/services.html',
+            '/about': '/about.html',
+            '/contact': '/contact.html',
+            '/team': '/team.html',
+            '/track-shipment': '/track-shipment.html',
+            '/privacy-policy': '/privacy-policy.html',
+            '/terms-of-service': '/terms-of-service.html',
+            '/cookie-policy': '/cookie-policy.html',
+            '/get-quote': '/get-quote.html',
+          };
+          
+          if (urlMap[req.url] && !req.url.includes('.')) {
+            req.url = urlMap[req.url];
+          }
+          next();
+        });
+      },
+    },
+  ],
 });
 
