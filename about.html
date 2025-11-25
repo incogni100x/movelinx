@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="stylesheet" href="/src/main.css">
 </head>
 <body class="flex min-h-screen flex-col bg-white font-sans">
@@ -269,19 +270,7 @@
 
       <div class="bg-white rounded-lg overflow-hidden">
         <div class="p-6 md:p-8">
-          <div class="h-96 bg-gray-200 rounded-lg overflow-hidden">
-            <!-- Replace with actual map embed code -->
-            <div class="w-full h-full flex items-center justify-center bg-gray-100">
-              <div class="text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 text-gray-400 mx-auto mb-4">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                  <path d="M2 12h20"></path>
-                </svg>
-                <p class="text-gray-500">Global operations map would be displayed here</p>
-              </div>
-            </div>
-          </div>
+          <div id="globalMap" class="h-96 md:h-[500px] rounded-lg overflow-hidden border border-gray-200"></div>
         </div>
         <div class="bg-gray-50 p-6 md:p-8">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -508,6 +497,99 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  // Initialize the map centered on the world
+  const map = L.map('globalMap').setView([20, 0], 2);
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Define locations with coordinates
+  const locations = {
+    // North America
+    'United States': [39.8283, -98.5795],
+    'Canada': [56.1304, -106.3468],
+    'Mexico': [23.6345, -102.5528],
+    // Europe
+    'United Kingdom': [55.3781, -3.4360],
+    'Germany': [51.1657, 10.4515],
+    'France': [46.2276, 2.2137],
+    'Spain': [40.4637, -3.7492],
+    'Italy': [41.8719, 12.5674],
+    'Netherlands': [52.1326, 5.2913],
+    // Asia Pacific
+    'China': [35.8617, 104.1954],
+    'Japan': [36.2048, 138.2529],
+    'Singapore': [1.3521, 103.8198],
+    'Australia': [-25.2744, 133.7751],
+    'India': [20.5937, 78.9629],
+    // Rest of World
+    'Brazil': [-14.2350, -51.9253],
+    'South Africa': [-30.5595, 22.9375],
+    'UAE': [23.4241, 53.8478],
+    'Nigeria': [9.0820, 8.6753]
+  };
+
+  // Create custom icon
+  const customIcon = L.divIcon({
+    className: 'custom-marker',
+    html: '<div style="background-color: #0a2463; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
+    iconSize: [12, 12],
+    iconAnchor: [6, 6]
+  });
+
+  // Add markers for each location
+  const markers = [];
+  Object.keys(locations).forEach(country => {
+    const marker = L.marker(locations[country], { icon: customIcon })
+      .addTo(map)
+      .bindPopup(`<strong>${country}</strong><br>Movelinx Operations`);
+    markers.push({ country, marker, coords: locations[country] });
+  });
+
+  // Add connection lines between major hubs
+  const connections = [
+    ['United States', 'United Kingdom'],
+    ['United States', 'China'],
+    ['United States', 'UAE'],
+    ['United Kingdom', 'Germany'],
+    ['United Kingdom', 'Singapore'],
+    ['Germany', 'China'],
+    ['China', 'Singapore'],
+    ['Singapore', 'Australia'],
+    ['UAE', 'India'],
+    ['UAE', 'South Africa'],
+    ['Brazil', 'United States'],
+    ['Japan', 'Singapore']
+  ];
+
+  connections.forEach(([from, to]) => {
+    if (locations[from] && locations[to]) {
+      L.polyline(
+        [locations[from], locations[to]],
+        {
+          color: '#c26943',
+          weight: 2,
+          opacity: 0.5,
+          dashArray: '5, 5'
+        }
+      ).addTo(map);
+    }
+  });
+</script>
+<style>
+  .custom-marker {
+    background: transparent;
+    border: none;
+  }
+  #globalMap {
+    z-index: 1;
+  }
+</style>
 
 </body>
 </html>
