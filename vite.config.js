@@ -22,6 +22,10 @@ export default defineConfig({
         'privacy-policy': resolve(__dirname, 'privacy-policy.html'),
         'terms-of-service': resolve(__dirname, 'terms-of-service.html'),
         'cookie-policy': resolve(__dirname, 'cookie-policy.html'),
+        'admin-login': resolve(__dirname, 'admin/login.html'),
+        'admin-shipments': resolve(__dirname, 'admin/shipments.html'),
+        'admin-create': resolve(__dirname, 'admin/create.html'),
+        'admin-shipment-details': resolve(__dirname, 'admin/shipment-details.html'),
       },
     },
   },
@@ -44,6 +48,10 @@ export default defineConfig({
             '/terms-of-service': '/terms-of-service.html',
             '/cookie-policy': '/cookie-policy.html',
             '/get-quote': '/get-quote.html',
+            '/admin-login': '/admin/login.html',
+            '/admin': '/admin/shipments.html',
+            '/admin/shipments': '/admin/shipments.html',
+            '/admin/create': '/admin/create.html',
           };
           
           if (urlMap[req.url] && !req.url.includes('.')) {

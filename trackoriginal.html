@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Shipment - LogiTrans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: "#0a2463",
+              foreground: "#ffffff",
+            },
+            secondary: {
+              DEFAULT: "#c26943",
+              foreground: "#ffffff",
+            },
+            accent: {
+              DEFAULT: "#c26943",
+              foreground: "#ffffff",
+            },
+            muted: {
+              DEFAULT: "#f1f5f9",
+              foreground: "#64748b",
+            },
+          },
+          fontFamily: {
+            sans: ['Instrument Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+      }
+    }
+  </style>
+</head>
+<body class="flex min-h-screen flex-col bg-white font-sans">
+  <header class="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <div class="container flex h-16 items-center justify-between">
+      <!-- Logo & Business Name -->
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+          <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+          <line x1="10" y1="17" x2="15" y2="17"></line>
+          <path d="M2 9h12"></path>
+        </svg>
+        <span class="text-xl font-bold text-primary">LogiTrans</span>
+      </div>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-6">
+        <a href="#" class="text-sm font-medium hover:text-primary">Home</a>
+        <a href="#" class="text-sm font-medium hover:text-primary">Services</a>
+        <a href="#" class="text-sm font-medium hover:text-primary">About</a>
+        <a href="#" class="text-sm font-medium hover:text-primary">Contact</a>
+      </nav>
+      <!-- CTA Buttons (Desktop) -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="create-shipment.html" class="h-9 flex items-center justify-center rounded-md border border-secondary px-3 text-sm font-medium text-secondary hover:bg-secondary hover:text-white">
+          Create Shipment
+        </a>
+        <a href="get-quote.html" class="h-9 flex items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-white hover:bg-primary/90">
+          Get Quote
+        </a>
+      </div>
+      <!-- Hamburger for Mobile -->
+      <button id="openMobileMenu" class="md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+ <!-- Mobile Menu Overlay -->
+<div id="mobileMenu" class="fixed inset-0 z-50 hidden bg-[#f5f5f5]">
+    <!-- Top Bar with Logo & Close Button -->
+    <div class="container flex items-center justify-between p-4">
+      <span class="text-xl font-bold text-primary">LogiTrans</span>
+      <button id="closeMobileMenu" class="text-primary">
+        <!-- X Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="mt-4">
+      <ul class="flex flex-col items-center gap-4 text-xl">
+        <li>
+          <a href="#" class="text-primary hover:text-secondary">Home</a>
+        </li>
+        <li>
+          <a href="#" class="text-primary hover:text-secondary">Services</a>
+        </li>
+        <li>
+          <a href="#" class="text-primary hover:text-secondary">About</a>
+        </li>
+        <li>
+          <a href="#" class="text-primary hover:text-secondary">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex flex-col gap-4 px-8">
+      <a
+        href="create-shipment.html"
+        class="block w-full rounded-md border border-secondary px-4 py-3 text-center text-secondary hover:bg-secondary hover:text-white"
+      >
+        Create Shipment
+      </a>
+      <a
+        href="get-quote.html"
+        class="block w-full rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+      >
+        Get Quote
+      </a>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const openMobileMenu = document.getElementById('openMobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+  
+    openMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+    });
+  
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  </script>
+  
+
+
+  <main class="container py-8 md:py-12">
+    <!-- Tracking Search Form -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="bg-white rounded-lg border shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-primary mb-4">Enter Tracking Number</h2>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input 
+            type="text" 
+            id="trackingInput" 
+            placeholder="e.g. TRK-123ABC" 
+            class="flex-1 rounded-md border border-gray-300 px-4 py-2"
+            value="TRK-123ABC"
+          >
+          <button 
+            id="trackButton" 
+            class="rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90 flex items-center justify-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Track Shipment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tracking Results -->
+    <div id="trackingResults" class="max-w-4xl mx-auto">
+      <!-- Tracking Summary -->
+      <div class="bg-white rounded-lg border shadow-sm mb-6">
+        <div class="p-6 border-b">
+          <div class="flex items-center gap-2 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <h2 class="text-xl font-semibold text-primary">Shipment Summary</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="font-medium">Tracking ID:</span>
+                <span class="font-bold text-primary">TRK-123ABC</span>
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span class="font-medium">From:</span>
+                <span>Lagos, Nigeria</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span class="font-medium">To:</span>
+                <span>Accra, Ghana</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span class="font-medium">Current Status:</span>
+                <span class="text-primary font-semibold">In Transit</span>
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="font-medium">Estimated Delivery:</span>
+                <span>Mar 31, 2025</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span class="font-medium">Last Updated:</span>
+                <span>Mar 30, 2025 09:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-primary/5 rounded-b-lg">
+          <div class="flex items-center justify-between">
+            <div class="text-sm text-gray-600">
+              <span class="font-medium">Package:</span> Medium Box (2.5kg)
+            </div>
+            <div class="text-sm text-gray-600">
+              <span class="font-medium">Service:</span> Express (24 hours)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="bg-white rounded-lg border shadow-sm mb-6 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-4">Shipment Progress</h3>
+        <div class="relative pt-1">
+          <div class="flex mb-2 items-center justify-between">
+            <div>
+              <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">
+                60% Complete
+              </span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-semibold inline-block text-primary">
+                3 of 5 steps completed
+              </span>
+            </div>
+          </div>
+          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+            <div style="width: 60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-600">
+            <span class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              Processing
+            </span>
+            <span class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              Picked Up
+            </span>
+            <span class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              In Transit
+            </span>
+            <span class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mb-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              At Destination
+            </span>
+            <span class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400 mb-1">
+                <circle cx="12" cy="12" r="10"></circle>
+              </svg>
+              Delivered
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="bg-white rounded-lg border shadow-sm">
+        <div class="p-6 border-b">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary">
+              <line x1="12" y1="20" x2="12" y2="10"></line>
+              <line x1="18" y1="20" x2="18" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="16"></line>
+            </svg>
+            <h3 class="text-lg font-semibold text-primary">Shipment Timeline</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flow-root">
+            <ul class="-mb-8">
+              <!-- Timeline Item 1 -->
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-gray-900">Processing</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Mar 29, 10:00 • Lagos, Nigeria</p>
+                      </div>
+                      <div class="mt-2 text-sm text-gray-700 max-w-md">
+                        <p>Shipment created and registered in the system</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Timeline Item 2 -->
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-gray-900">Picked Up</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Mar 29, 14:00 • Lagos, Nigeria</p>
+                      </div>
+                      <div class="mt-2 text-sm text-gray-700 max-w-md">
+                        <p>Package collected from sender</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Timeline Item 3 -->
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-gray-900">In Transit</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Mar 30, 09:00 • En route to Accra</p>
+                      </div>
+                      <div class="mt-2 text-sm text-gray-700 max-w-md">
+                        <p>Package has departed from Lagos hub and is en route to destination</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Timeline Item 4 (Current) -->
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-primary">At Destination Hub</span>
+                          <span class="ml-2 font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full text-xs">Current</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Expected Mar 31, 08:00 • Accra, Ghana</p>
+                      </div>
+                      <div class="mt-2 text-sm text-gray-700 max-w-md">
+                        <p>Package will arrive at Accra distribution hub</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Timeline Item 5 (Upcoming) -->
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
+                          <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-gray-500">Out for Delivery</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Pending</p>
+                      </div>
+                      <div class="mt-2 text-sm text-gray-500 max-w-md">
+                        <p>Package will be out for final delivery to recipient</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Timeline Item 6 (Upcoming) -->
+              <li>
+                <div class="relative">
+                  <div class="relative flex items-start space-x-3">
+                    <div class="relative">
+                      <div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center ring-8 ring-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
+                          <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div>
+                        <div class="text-sm">
+                          <span class="font-medium text-gray-500">Delivered</span>
+                        </div>
+                        <p class="mt-0.5 text-sm text-gray-500">Pending</p>
+                      </div>
+                      <div class="mt-2 mb-6 text-sm text-gray-500 max-w-md">
+                        <p>Package will be delivered to recipient's address</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error State (Hidden by default) -->
+      <div id="errorState" class="bg-white rounded-lg border shadow-sm p-8 text-center hidden">
+        <div class="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-red-500">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Tracking ID not found</h3>
+        <p class="text-gray-600 mb-6">Please check the tracking number and try again.</p>
+        <p class="text-gray-600">
+          If you believe this is an error, please 
+          <a href="#" class="text-primary hover:underline">contact our support team</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Additional Details -->
+    <div class="max-w-4xl mx-auto mt-8">
+      <div class="bg-white rounded-lg border shadow-sm p-6">
+        <h3 class="text-lg font-semibold text-primary mb-4">Additional Information</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Package Details</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <span>Package Type: Medium Box</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m4.93 4.93 4.24 4.24"></path>
+                  <path d="m14.83 9.17 4.24-4.24"></path>
+                  <path d="m14.83 14.83 4.24 4.24"></path>
+                  <path d="m9.17 14.83-4.24 4.24"></path>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+                <span>Weight: 2.5 kg</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <span>Dimensions: 30cm × 25cm × 20cm</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <path d="M12 2v20"></path>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span>Declared Value: $150.00</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Sender & Receiver</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Sender: John D. (Lagos)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Receiver: Sarah M. (Accra)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Shipping Method: Express (24 hours)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Insurance: Included</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Get Updates Section -->
+    <div class="max-w-4xl mx-auto mt-8">
+      <div class="bg-primary rounded-lg shadow-sm p-6 text-white">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Get Shipment Updates</h3>
+            <p class="text-white/80">Receive notifications about your shipment status via email or SMS</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="rounded-md border border-white/20 bg-white/10 px-4 py-2 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+            >
+            <button class="rounded-md bg-white px-4 py-2 text-primary font-medium hover:bg-white/90">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t bg-[#f5f5f5]">
+    <div class="container py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <span class="text-xl font-bold text-primary">LogiTrans</span>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Global logistics solutions for businesses of all sizes. Reliable, efficient, and secure shipping
+            services worldwide.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Services</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Air Freight
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Ocean Freight
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Road Transport
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Warehousing
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Supply Chain
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Customs Clearance
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Company</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Our Team
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Careers
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                News & Blog
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Sustainability
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 hover:text-secondary">
+                Locations
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-primary">Contact</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mt-0.5 text-secondary">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="text-gray-600">123 Logistics Way, Transport City, TC 10001</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span class="text-gray-600">+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span class="text-gray-600">info@logitrans.com</span>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <h4 class="font-medium mb-2 text-primary">Subscribe to our newsletter</h4>
+            <div class="flex gap-2">
+              <input type="email" placeholder="Your email" class="w-full max-w-xs rounded-md border border-gray-300 px-3 py-2">
+              <button class="rounded-md border border-secondary px-3 py-2 text-secondary hover:bg-secondary hover:text-white">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-gray-600">
+          © <script>document.write(new Date().getFullYear())</script> LogiTrans. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Privacy Policy
+          </a>
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Terms of Service
+          </a>
+          <a href="#" class="text-sm text-gray-600 hover:text-secondary">
+            Cookie Policy
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const trackButton = document.getElementById('trackButton');
+      const trackingInput = document.getElementById('trackingInput');
+      const trackingResults = document.getElementById('trackingResults');
+      const errorState = document.getElementById('errorState');
+      
+      trackButton.addEventListener('click', function() {
+        const trackingNumber = trackingInput.value.trim();
+        
+        // Show loading state
+        trackButton.disabled = true;
+        trackButton.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Tracking...
+        `;
+        
+        // Simulate API call
+        setTimeout(function() {
+          // Reset button
+          trackButton.disabled = false;
+          trackButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Track Shipment
+          `;
+          
+          // Check if tracking number is valid (for demo purposes)
+          if (trackingNumber === 'TRK-123ABC') {
+            trackingResults.style.display = 'block';
+            errorState.style.display = 'none';
+          } else {
+            trackingResults.style.display = 'none';
+            errorState.style.display = 'block';
+          }
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
+
+s

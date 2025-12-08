@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movelinx Security and Delivery - Shipment Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/main.css">
+  <style>
+    .focus-ring-primary:focus {
+      --tw-ring-color: #0a2463;
+      --tw-ring-opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <div class="min-h-screen flex flex-col">
+    <!-- Mobile sidebar -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-40 hidden" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" id="mobile-sidebar-backdrop"></div>
+      
+      <div class="fixed inset-y-0 left-0 flex flex-col z-40 w-64 bg-primary text-white">
+        <div class="h-16 flex items-center px-4">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <span class="text-xl font-bold">Movelinx Admin</span>
+          </div>
+          <button 
+            class="ml-auto text-white hover:text-gray-200"
+            id="close-sidebar-button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <nav class="flex-1 px-2 py-4 overflow-y-auto">
+          <a href="/admin/shipments" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 bg-primary-700 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Shipments
+          </a>
+          <a href="/admin/create" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 text-white/80 hover:bg-primary-700 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Create Shipment
+          </a>
+        </nav>
+        
+        <div class="p-4">
+          <button id="mobile-logout-button" class="flex items-center w-full px-4 py-2 text-base font-medium text-white/80 hover:text-white rounded-md hover:bg-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Desktop sidebar -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+      <div class="flex flex-col flex-grow bg-primary text-white">
+        <div class="h-16 flex items-center px-4">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <span class="text-xl font-bold">Movelinx Admin</span>
+          </div>
+        </div>
+        
+        <nav class="flex-1 px-2 py-4 overflow-y-auto">
+          <a href="/admin/shipments" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 bg-primary-700 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Shipments
+          </a>
+          <a href="/admin/create" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 text-white/80 hover:bg-primary-700 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Create Shipment
+          </a>
+        </nav>
+        
+        <div class="p-4">
+          <button id="desktop-logout-button" class="flex items-center w-full px-4 py-2 text-base font-medium text-white/80 hover:text-white rounded-md hover:bg-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="lg:pl-64 flex flex-col flex-1">
+      <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+        <button
+          type="button"
+          id="open-sidebar-button"
+          class="px-4 text-gray-500 lg:hidden"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="flex flex-1 justify-between px-4">
+          <div class="flex flex-1">
+            <div class="flex w-full md:ml-0">
+              <div class="relative w-full max-w-md">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search shipments..."
+                  class="block w-full rounded-md border-0 py-2 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="ml-4 flex items-center md:ml-6">
+            <button class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </button>
+            
+            <div class="relative ml-3">
+              <div>
+                <button class="flex max-w-xs items-center rounded-full bg-white text-sm">
+                  <img
+                    class="h-8 w-8 rounded-full"
+                    src="https://placehold.co/100x100"
+                    alt="User avatar"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <main class="py-6">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mb-6 flex justify-between items-center">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">Shipment Details</h1>
+              <p class="mt-1 text-sm text-gray-500" id="tracking-id">Loading...</p>
+            </div>
+            <div class="flex space-x-4">
+              <button
+                id="update-status-button"
+                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary hover:bg-secondary-dark"
+              >
+                Update Status
+              </button>
+              <a
+                href="/admin/shipments"
+                class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back to Shipments
+              </a>
+            </div>
+          </div>
+
+          <!-- Shipment Summary -->
+          <div class="bg-white shadow rounded-lg mb-8">
+            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">Shipment Summary</h3>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">Details and current status</p>
+            </div>
+
+            <div class="px-4 py-5 sm:p-6">
+              <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <h4 class="text-sm font-medium text-gray-500">Current Status</h4>
+                  <div class="mt-1">
+                    <span id="current-status" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                      Loading...
+                    </span>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <h4 class="text-sm font-medium text-gray-500">Last Updated</h4>
+                  <p id="last-updated" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <h4 class="text-sm font-medium text-gray-500">Created On</h4>
+                  <p id="created-on" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <h4 class="text-sm font-medium text-gray-500">Package Type</h4>
+                  <p id="package-type" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <h4 class="text-sm font-medium text-gray-500">Weight</h4>
+                  <p id="package-weight" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <h4 class="text-sm font-medium text-gray-500">Dimensions</h4>
+                  <p id="package-dimensions" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <h4 class="text-sm font-medium text-gray-500">Declared Value</h4>
+                  <p id="package-value" class="mt-1 text-sm text-gray-900">Loading...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sender & Receiver Information -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-8">
+            <!-- Sender Information -->
+            <div class="bg-white shadow rounded-lg">
+              <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Sender Information</h3>
+              </div>
+              <div class="px-4 py-5 sm:p-6">
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Name</h4>
+                    <p id="sender-name" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Phone</h4>
+                    <p id="sender-phone" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Email</h4>
+                    <p id="sender-email" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Address</h4>
+                    <p id="sender-address" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Receiver Information -->
+            <div class="bg-white shadow rounded-lg">
+              <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Receiver Information</h3>
+              </div>
+              <div class="px-4 py-5 sm:p-6">
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Name</h4>
+                    <p id="receiver-name" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Phone</h4>
+                    <p id="receiver-phone" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Address</h4>
+                    <p id="receiver-address" class="mt-1 text-sm text-gray-900">Loading...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment & Clearance Information -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-8">
+            <!-- Payment Information -->
+            <div class="bg-white shadow rounded-lg">
+              <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Payment Information</h3>
+              </div>
+              <div class="px-4 py-5 sm:p-6">
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Invoice Number</h4>
+                    <p id="payment-invoice-number" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Payment Status</h4>
+                    <p id="payment-status-display" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Payment Method</h4>
+                    <p id="payment-method-display" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Payment Date</h4>
+                    <p id="payment-date-display" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div class="pt-4 border-t border-gray-200">
+                    <h5 class="text-sm font-semibold text-gray-900 mb-3">Payment Breakdown</h5>
+                    <div class="space-y-2 text-sm">
+                      <div class="flex justify-between">
+                        <span class="text-gray-500">Shipping Cost</span>
+                        <span id="payment-shipping-cost" class="font-medium text-gray-900">N/A</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-500">Insurance</span>
+                        <span id="payment-insurance" class="font-medium text-gray-900">N/A</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-500">Taxes</span>
+                        <span id="payment-taxes" class="font-medium text-gray-900">N/A</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-500">Additional Fees</span>
+                        <span id="payment-additional-fees" class="font-medium text-gray-900">N/A</span>
+                      </div>
+                      <div class="flex justify-between pt-2 border-t border-gray-200">
+                        <span class="font-semibold text-gray-900">Total Amount</span>
+                        <span id="payment-total-amount" class="font-bold text-primary">N/A</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customs Clearance Information -->
+            <div class="bg-white shadow rounded-lg">
+              <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Customs Clearance Information</h3>
+              </div>
+              <div class="px-4 py-5 sm:p-6">
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Clearance Status</h4>
+                    <p id="clearance-status-display" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Declaration Number</h4>
+                    <p id="clearance-declaration-number" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-gray-500">Notes</h4>
+                    <p id="clearance-notes-display" class="mt-1 text-sm text-gray-900">N/A</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipment Timeline -->
+          <div class="bg-white shadow rounded-lg mb-8">
+            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">Shipment Timeline</h3>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">Event history and tracking updates</p>
+            </div>
+            <div class="px-4 py-5 sm:p-6">
+              <div class="flow-root">
+                <ul class="-mb-8" id="timeline-events">
+                  <!-- Timeline events will be populated dynamically -->
+                  <li class="text-sm text-gray-500">Loading timeline...</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Update Status Modal -->
+  <div id="update-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div id="modal-backdrop" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 max-h-[90vh] overflow-y-auto">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                Update Shipment Information
+              </h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Update shipment details for <span id="modal-tracking-id" class="font-medium">Loading...</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 sm:mt-4">
+            <form id="update-form" class="space-y-6">
+              <!-- Status Update Section -->
+              <div class="border-b border-gray-200 pb-4">
+                <h4 class="text-base font-semibold text-gray-900 mb-4">Status Update</h4>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label for="status" class="block text-sm font-medium text-gray-700">
+                      Status
+                    </label>
+                    <select
+                      id="status"
+                      class="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                    >
+                      <option value="Processing">Processing</option>
+                      <option value="Picked Up">Picked Up</option>
+                      <option value="In Transit">In Transit</option>
+                      <option value="At Destination">At Destination</option>
+                      <option value="Delivered">Delivered</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="location" class="block text-sm font-medium text-gray-700">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      id="location"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                      placeholder="Enter location"
+                    />
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <label for="notes" class="block text-sm font-medium text-gray-700">
+                    Notes (Optional)
+                  </label>
+                  <textarea
+                    id="notes"
+                    rows="3"
+                    class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                    placeholder="Add any additional details (optional)"
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- Payment Information Section -->
+              <div class="border-b border-gray-200 pb-4">
+                <h4 class="text-base font-semibold text-gray-900 mb-4">Payment Information</h4>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label for="update-invoice-number" class="block text-sm font-medium text-gray-700">
+                      Invoice Number
+                    </label>
+                    <input
+                      type="text"
+                      id="update-invoice-number"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                      placeholder="e.g. INV-ASIA7890"
+                    />
+                  </div>
+                  <div>
+                    <label for="update-payment-status" class="block text-sm font-medium text-gray-700">
+                      Payment Status
+                    </label>
+                    <select
+                      id="update-payment-status"
+                      class="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                    >
+                      <option value="">Select status</option>
+                      <option value="paid">Paid</option>
+                      <option value="pending">Pending</option>
+                      <option value="unpaid">Unpaid</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="update-payment-method" class="block text-sm font-medium text-gray-700">
+                      Payment Method
+                    </label>
+                    <input
+                      type="text"
+                      id="update-payment-method"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                      placeholder="e.g. Corporate Account"
+                    />
+                  </div>
+                  <div>
+                    <label for="update-payment-date" class="block text-sm font-medium text-gray-700">
+                      Payment Date
+                    </label>
+                    <input
+                      type="date"
+                      id="update-payment-date"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                    />
+                  </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                  <h5 class="text-sm font-semibold text-gray-900 mb-3">Payment Breakdown</h5>
+                  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label for="update-shipping-cost" class="block text-sm font-medium text-gray-700">
+                        Shipping Cost (¥)
+                      </label>
+                      <input
+                        type="number"
+                        id="update-shipping-cost"
+                        step="0.01"
+                        min="0"
+                        class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        placeholder="0.00"
+                      />
+                    </div>
+                    <div>
+                      <label for="update-insurance" class="block text-sm font-medium text-gray-700">
+                        Insurance (¥)
+                      </label>
+                      <input
+                        type="number"
+                        id="update-insurance"
+                        step="0.01"
+                        min="0"
+                        class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        placeholder="0.00"
+                      />
+                    </div>
+                    <div>
+                      <label for="update-taxes" class="block text-sm font-medium text-gray-700">
+                        Taxes (¥)
+                      </label>
+                      <input
+                        type="number"
+                        id="update-taxes"
+                        step="0.01"
+                        min="0"
+                        class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        placeholder="0.00"
+                      />
+                    </div>
+                    <div>
+                      <label for="update-additional-fees" class="block text-sm font-medium text-gray-700">
+                        Additional Fees ($)
+                      </label>
+                      <input
+                        type="number"
+                        id="update-additional-fees"
+                        step="0.01"
+                        min="0"
+                        class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        placeholder="0.00"
+                      />
+                    </div>
+                    <div>
+                      <label for="update-total-amount" class="block text-sm font-medium text-gray-700">
+                        Total Amount (¥)
+                      </label>
+                      <input
+                        type="number"
+                        id="update-total-amount"
+                        step="0.01"
+                        min="0"
+                        class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3 font-semibold"
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Customs Clearance Information Section -->
+              <div>
+                <h4 class="text-base font-semibold text-gray-900 mb-4">Customs Clearance Information</h4>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label for="update-clearance-status" class="block text-sm font-medium text-gray-700">
+                      Clearance Status
+                    </label>
+                    <select
+                      id="update-clearance-status"
+                      class="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                    >
+                      <option value="">Select status</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                      <option value="pending">Pending</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="update-declaration-number" class="block text-sm font-medium text-gray-700">
+                      Declaration Number
+                    </label>
+                    <input
+                      type="text"
+                      id="update-declaration-number"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                      placeholder="e.g. EXP/23/089754"
+                    />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label for="update-clearance-notes" class="block text-sm font-medium text-gray-700">
+                      Clearance Notes
+                    </label>
+                    <textarea
+                      id="update-clearance-notes"
+                      rows="3"
+                      class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                      placeholder="Documentation verified. Awaiting physical inspection clearance."
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button
+            type="button"
+            id="submit-update"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Update Shipment
+          </button>
+          <button
+            type="button"
+            id="cancel-update"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/shipment-details.js"></script>
+</body>
+</html>

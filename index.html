@@ -97,16 +97,47 @@
   
   <!-- Mobile Menu Toggle Script -->
   <script>
-    const openMobileMenu = document.getElementById('openMobileMenu');
-    const closeMobileMenu = document.getElementById('closeMobileMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-  
-    openMobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.remove('hidden');
-    });
-  
-    closeMobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+    document.addEventListener('DOMContentLoaded', function() {
+      const openMobileMenu = document.getElementById('openMobileMenu');
+      const closeMobileMenu = document.getElementById('closeMobileMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+    
+      if (openMobileMenu) {
+        openMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+        });
+      }
+    
+      if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      }
+
+      // Track shipment from home page
+      const homeTrackButton = document.getElementById('homeTrackButton');
+      const homeTrackingInput = document.getElementById('homeTrackingInput');
+
+      if (homeTrackButton && homeTrackingInput) {
+        homeTrackButton.addEventListener('click', function() {
+          const trackingNumber = homeTrackingInput.value.trim();
+          
+          if (trackingNumber) {
+            // Navigate to track-shipment page with tracking ID as query parameter
+            window.location.href = `/track-shipment?tracking=${encodeURIComponent(trackingNumber)}`;
+          } else {
+            // If no tracking number, just go to track-shipment page
+            window.location.href = '/track-shipment';
+          }
+        });
+
+        // Allow Enter key to trigger tracking
+        homeTrackingInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            homeTrackButton.click();
+          }
+        });
+      }
     });
   </script>
   
@@ -154,17 +185,19 @@
                     </svg>
                     <input
                       type="text"
+                      id="homeTrackingInput"
                       placeholder="Enter tracking number, container ID or reference number"
                       class="pl-9 h-11 w-full rounded-md bg-white text-black"
                     />
                   </div>
                   <!-- Track Now Button -->
-                  <a
-                    href="/track-shipment"
+                  <button
+                    type="button"
+                    id="homeTrackButton"
                     class="w-full sm:w-auto h-11 shrink-0 rounded-md bg-secondary px-8 text-sm font-medium text-white hover:bg-secondary/90 flex items-center justify-center"
                   >
                     Track Now
-                  </a>
+                  </button>
                 </div>
               </div>
       

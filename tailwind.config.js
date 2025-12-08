@@ -10,6 +10,7 @@ export default {
     "./privacy-policy.html",
     "./terms-of-service.html",
     "./cookie-policy.html",
+    "./admin/**/*.html",
     "./**/*.{js,ts,jsx,tsx}",
   ],
   theme: {

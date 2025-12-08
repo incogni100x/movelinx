@@ -39,6 +39,22 @@
     {
       "source": "/get-quote",
       "destination": "/get-quote.html"
+    },
+    {
+      "source": "/admin-login",
+      "destination": "/admin/login.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin/shipments.html"
+    },
+    {
+      "source": "/admin/shipments",
+      "destination": "/admin/shipments.html"
+    },
+    {
+      "source": "/admin/create",
+      "destination": "/admin/create.html"
     }
   ],
   "headers": [

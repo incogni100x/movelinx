@@ -106,9 +106,8 @@
           <input 
             type="text" 
             id="trackingInput" 
-            placeholder="e.g. TRK-123ABC" 
+            placeholder="e.g. MSD12345" 
             class="flex-1 rounded-md border border-gray-300 px-4 py-2"
-            value="TRK-123ABC"
           >
           <button 
             id="trackButton" 
@@ -125,81 +124,81 @@
     </div>
 
     <!-- Tracking Results -->
-    <div id="trackingResults" class="max-w-4xl mx-auto">
+    <div id="trackingResults" class="max-w-4xl mx-auto hidden">
       <!-- Tracking Summary -->
       <div class="bg-white rounded-lg border shadow-sm mb-6">
         <div class="p-6 border-b">
           <div class="flex items-center gap-2 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 md:h-6 md:w-6 text-primary">
               <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
               <line x1="10" y1="17" x2="15" y2="17"></line>
               <path d="M2 9h12"></path>
             </svg>
-            <h2 class="text-xl font-semibold text-primary">Shipment Summary</h2>
+            <h2 class="text-base md:text-xl font-semibold text-primary">Shipment Summary</h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
               <div class="flex items-center gap-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <span class="font-medium">Tracking ID:</span>
-                <span class="font-semibold text-primary">TRK-123ABC</span>
+                <span class="text-xs md:text-sm font-medium">Tracking ID:</span>
+                <span id="display-tracking-id" class="text-xs md:text-sm font-semibold text-primary">N/A</span>
               </div>
               <div class="flex items-center gap-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span class="font-medium">From:</span>
-                <span>Lagos, Nigeria</span>
+                <span class="text-xs md:text-sm font-medium">From:</span>
+                <span id="display-from" class="text-xs md:text-sm">N/A</span>
               </div>
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span class="font-medium">To:</span>
-                <span>Accra, Ghana</span>
+                <span class="text-xs md:text-sm font-medium">To:</span>
+                <span id="display-to" class="text-xs md:text-sm">N/A</span>
               </div>
             </div>
             <div>
               <div class="flex items-center gap-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
-                <span class="font-medium">Current Status:</span>
-                <span class="text-primary font-semibold">In Transit</span>
+                <span class="text-xs md:text-sm font-medium">Current Status:</span>
+                <span id="display-status" class="text-xs md:text-sm text-primary font-semibold">N/A</span>
               </div>
               <div class="flex items-center gap-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span class="font-medium">Estimated Delivery:</span>
-                <span>Mar 31, 2025</span>
+                <span class="text-xs md:text-sm font-medium">Estimated Delivery:</span>
+                <span id="display-estimated-delivery" class="text-xs md:text-sm">N/A</span>
               </div>
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
                   <line x1="8" y1="2" x2="8" y2="6"></line>
                   <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span class="font-medium">Last Updated:</span>
-                <span>Mar 30, 2025 09:00</span>
+                <span class="text-xs md:text-sm font-medium">Last Updated:</span>
+                <span id="display-last-updated" class="text-xs md:text-sm">N/A</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="p-4 bg-primary/5 rounded-b-lg">
+        <div class="p-3 md:p-4 bg-primary/5 rounded-b-lg">
           <div class="flex items-center justify-between">
-            <div class="text-sm text-gray-600">
-              <span class="font-medium">Package:</span> Medium Box (2.5kg)
+            <div class="text-xs md:text-sm text-gray-600">
+              <span class="font-medium">Package:</span> <span id="display-package">N/A</span>
             </div>
-            <div class="text-sm text-gray-600">
-              <span class="font-medium">Service:</span> Express (24 hours)
+            <div class="text-xs md:text-sm text-gray-600">
+              <span class="font-medium">Service:</span> <span id="display-service">N/A</span>
             </div>
           </div>
         </div>
@@ -211,51 +210,52 @@
         <div class="relative pt-1">
           <div class="flex mb-2 items-center justify-between">
             <div>
-              <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">
-                60% Complete
+              <span id="progress-percentage" class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">
+                0% Complete
               </span>
             </div>
             <div class="text-right">
-              <span class="text-xs font-semibold inline-block text-primary">
-                3 of 5 steps completed
+              <span id="progress-steps" class="text-xs font-semibold inline-block text-primary">
+                0 of 5 steps completed
               </span>
             </div>
           </div>
           <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-            <div style="width: 60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary"></div>
+            <div id="progress-bar" style="width: 0%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary"></div>
           </div>
           <div class="flex justify-between text-xs text-gray-600">
-            <span class="text-center flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            <span id="progress-step-1" class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mb-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
               Processing
             </span>
-            <span class="text-center flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            <span id="progress-step-2" class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mb-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
               Picked Up
             </span>
-            <span class="text-center flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600 mb-1">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            <span id="progress-step-3" class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mb-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
               In Transit
             </span>
-            <span class="text-center flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mb-1">
+            <span id="progress-step-4" class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mb-1">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
               At Destination
             </span>
-            <span class="text-center flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400 mb-1">
+            <span id="progress-step-5" class="text-center flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mb-1">
                 <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
               Delivered
             </span>
@@ -277,172 +277,9 @@
         </div>
         <div class="p-6">
           <div class="flow-root">
-            <ul class="-mb-8">
-              <!-- Timeline Item 1 -->
-              <li>
-                <div class="relative pb-8">
-                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-gray-900">Processing</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Mar 29, 10:00 • Lagos, Nigeria</p>
-                      </div>
-                      <div class="mt-2 text-sm text-gray-700 max-w-md">
-                        <p>Shipment created and registered in the system</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Timeline Item 2 -->
-              <li>
-                <div class="relative pb-8">
-                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-gray-900">Picked Up</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Mar 29, 14:00 • Lagos, Nigeria</p>
-                      </div>
-                      <div class="mt-2 text-sm text-gray-700 max-w-md">
-                        <p>Package collected from sender</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Timeline Item 3 -->
-              <li>
-                <div class="relative pb-8">
-                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-600">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-gray-900">In Transit</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Mar 30, 09:00 • En route to Accra</p>
-                      </div>
-                      <div class="mt-2 text-sm text-gray-700 max-w-md">
-                        <p>Package has departed from Lagos hub and is en route to destination</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Timeline Item 4 (Current) -->
-              <li>
-                <div class="relative pb-8">
-                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-primary">At Destination Hub</span>
-                          <span class="ml-2 font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full text-xs">Current</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Expected Mar 31, 08:00 • Accra, Ghana</p>
-                      </div>
-                      <div class="mt-2 text-sm text-gray-700 max-w-md">
-                        <p>Package will arrive at Accra distribution hub</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Timeline Item 5 (Upcoming) -->
-              <li>
-                <div class="relative pb-8">
-                  <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
-                          <circle cx="12" cy="12" r="10"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-gray-500">Out for Delivery</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Pending</p>
-                      </div>
-                      <div class="mt-2 text-sm text-gray-500 max-w-md">
-                        <p>Package will be out for final delivery to recipient</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Timeline Item 6 (Upcoming) -->
-              <li>
-                <div class="relative">
-                  <div class="relative flex items-start space-x-3">
-                    <div class="relative">
-                      <div class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center ring-8 ring-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
-                          <circle cx="12" cy="12" r="10"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="min-w-0 flex-1">
-                      <div>
-                        <div class="text-sm">
-                          <span class="font-medium text-gray-500">Delivered</span>
-                        </div>
-                        <p class="mt-0.5 text-sm text-gray-500">Pending</p>
-                      </div>
-                      <div class="mt-2 mb-6 text-sm text-gray-500 max-w-md">
-                        <p>Package will be delivered to recipient's address</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
+            <ul id="timeline-list" class="-mb-8">
+              <!-- Timeline events will be populated dynamically -->
+              <li class="text-sm text-gray-500">Enter a tracking number to view timeline</li>
             </ul>
           </div>
         </div>
@@ -468,42 +305,42 @@
                 <div class="space-y-4">
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Invoice Number</span>
-                    <span class="text-sm font-semibold text-primary text-right">INV - ASIA7890</span>
+                    <span id="display-invoice-number" class="text-sm font-semibold text-primary text-right">N/A</span>
                   </div>
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Payment Status</span>
-                    <span class="text-sm font-semibold text-green-600 text-right">Paid</span>
+                    <span id="display-payment-status" class="text-sm font-semibold text-green-600 text-right">N/A</span>
                   </div>
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Payment Method</span>
-                    <span class="text-sm font-semibold text-primary text-right">Corporate Account</span>
+                    <span id="display-payment-method" class="text-sm font-semibold text-primary text-right">N/A</span>
                   </div>
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Payment Date</span>
-                    <span class="text-sm font-semibold text-primary text-right">July 31, 2023</span>
+                    <span id="display-payment-date" class="text-sm font-semibold text-primary text-right">N/A</span>
                   </div>
                 </div>
                 <div class="mt-6 pt-6 border-t border-gray-200">
                   <div class="space-y-3">
                     <div class="flex justify-between items-start">
                       <span class="text-sm text-gray-600">Shipping Cost</span>
-                      <span class="text-sm font-semibold text-primary text-right">¥38500.00</span>
+                      <span id="display-shipping-cost" class="text-sm font-semibold text-primary text-right">N/A</span>
                     </div>
                     <div class="flex justify-between items-start">
                       <span class="text-sm text-gray-600">Insurance</span>
-                      <span class="text-sm font-semibold text-primary text-right">¥5200.00</span>
+                      <span id="display-insurance" class="text-sm font-semibold text-primary text-right">N/A</span>
                     </div>
                     <div class="flex justify-between items-start">
                       <span class="text-sm text-gray-600">Taxes</span>
-                      <span class="text-sm font-semibold text-primary text-right">¥3800.00</span>
+                      <span id="display-taxes" class="text-sm font-semibold text-primary text-right">N/A</span>
                     </div>
                     <div class="flex justify-between items-start">
                       <span class="text-sm text-gray-600">Additional Fees</span>
-                      <span class="text-sm font-semibold text-primary text-right">$0.00</span>
+                      <span id="display-additional-fees" class="text-sm font-semibold text-primary text-right">N/A</span>
                     </div>
                     <div class="flex justify-between items-start pt-3 border-t border-gray-200">
                       <span class="text-base font-semibold text-gray-900">Total Amount</span>
-                      <span class="text-base font-bold text-primary text-right">¥47500.00</span>
+                      <span id="display-total-amount" class="text-base font-bold text-primary text-right">N/A</span>
                     </div>
                   </div>
                 </div>
@@ -515,17 +352,17 @@
                 <div class="space-y-4">
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Clearance Status</span>
-                    <span class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full text-right">In Progress</span>
+                    <span id="display-clearance-status" class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full text-right">N/A</span>
                   </div>
                   <div class="flex justify-between items-start">
                     <span class="text-sm text-gray-600">Declaration Number</span>
-                    <span class="text-sm font-semibold text-primary text-right">EXP/23/089754</span>
+                    <span id="display-declaration-number" class="text-sm font-semibold text-primary text-right">N/A</span>
                   </div>
                   <div class="mt-6 pt-6 border-t border-gray-200">
                     <div>
                       <span class="text-sm text-gray-600 block mb-2">Notes</span>
-                      <p class="text-sm text-gray-700 bg-gray-50 rounded-lg p-3">
-                        Documentation verified. Awaiting physical inspection clearance.
+                      <p id="display-clearance-notes" class="text-sm text-gray-700 bg-gray-50 rounded-lg p-3">
+                        N/A
                       </p>
                     </div>
                   </div>
@@ -556,20 +393,20 @@
 
     <!-- Additional Details -->
     <div class="max-w-4xl mx-auto mt-8">
-      <div class="bg-white rounded-lg border shadow-sm p-6">
-        <h3 class="text-lg font-semibold text-primary mb-4">Additional Information</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-lg border shadow-sm p-4 md:p-6">
+        <h3 class="text-base md:text-lg font-semibold text-primary mb-4">Additional Information</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
-            <h4 class="font-medium text-gray-900 mb-2">Package Details</h4>
-            <ul class="space-y-2 text-sm text-gray-600">
+            <h4 class="text-xs md:text-sm font-medium text-gray-900 mb-2">Package Details</h4>
+            <ul class="space-y-2 text-xs md:text-sm text-gray-600">
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                 </svg>
-                <span>Package Type: Medium Box</span>
+                <span>Package Type: <span id="display-package-type">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <circle cx="12" cy="12" r="10"></circle>
                   <path d="m4.93 4.93 4.24 4.24"></path>
                   <path d="m14.83 9.17 4.24-4.24"></path>
@@ -577,55 +414,55 @@
                   <path d="m9.17 14.83-4.24 4.24"></path>
                   <circle cx="12" cy="12" r="4"></circle>
                 </svg>
-                <span>Weight: 2.5 kg</span>
+                <span>Weight: <span id="display-weight">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="3" y1="9" x2="21" y2="9"></line>
                   <line x1="9" y1="21" x2="9" y2="9"></line>
                 </svg>
-                <span>Dimensions: 30cm × 25cm × 20cm</span>
+                <span>Dimensions: <span id="display-dimensions">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M12 2v20"></path>
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                 </svg>
-                <span>Declared Value: $150.00</span>
+                <span>Declared Value: <span id="display-declared-value">N/A</span></span>
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="font-medium text-gray-900 mb-2">Sender & Receiver</h4>
-            <ul class="space-y-2 text-sm text-gray-600">
+            <h4 class="text-xs md:text-sm font-medium text-gray-900 mb-2">Sender & Receiver</h4>
+            <ul class="space-y-2 text-xs md:text-sm text-gray-600">
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                <span>Sender: John D. (Lagos)</span>
+                <span>Sender: <span id="display-sender">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                <span>Receiver: Sarah M. (Accra)</span>
+                <span>Receiver: <span id="display-receiver">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <span>Shipping Method: Express (24 hours)</span>
+                <span>Shipping Method: <span id="display-service-type">N/A</span></span>
               </li>
               <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5 text-secondary">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <span>Insurance: Included</span>
+                <span>Insurance: <span id="display-insurance-status">N/A</span></span>
               </li>
             </ul>
           </div>
@@ -799,50 +636,7 @@
     </div>
   </footer>
   
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const trackButton = document.getElementById('trackButton');
-      const trackingInput = document.getElementById('trackingInput');
-      const trackingResults = document.getElementById('trackingResults');
-      const errorState = document.getElementById('errorState');
-      
-      trackButton.addEventListener('click', function() {
-        const trackingNumber = trackingInput.value.trim();
-        
-        // Show loading state
-        trackButton.disabled = true;
-        trackButton.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          Tracking...
-        `;
-        
-        // Simulate API call
-        setTimeout(function() {
-          // Reset button
-          trackButton.disabled = false;
-          trackButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            Track Shipment
-          `;
-          
-          // Check if tracking number is valid (for demo purposes)
-          if (trackingNumber === 'TRK-123ABC') {
-            trackingResults.style.display = 'block';
-            errorState.style.display = 'none';
-          } else {
-            trackingResults.style.display = 'none';
-            errorState.style.display = 'block';
-          }
-        }, 1500);
-      });
-    });
-  </script>
+  <script type="module" src="/src/js/track-shipment.js"></script>
 </body>
 </html>
 

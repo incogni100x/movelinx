@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movelinx Security and Delivery - Create Shipment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/main.css">
+  <style>
+    .focus-ring-primary:focus {
+      --tw-ring-color: #0a2463;
+      --tw-ring-opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <div class="min-h-screen flex flex-col">
+    <!-- Mobile sidebar -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-40 hidden" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" id="mobile-sidebar-backdrop"></div>
+      
+      <div class="fixed inset-y-0 left-0 flex flex-col z-40 w-64 bg-primary text-white">
+        <div class="h-16 flex items-center px-4">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <span class="text-xl font-bold">Movelinx Admin</span>
+          </div>
+          <button 
+            class="ml-auto text-white hover:text-gray-200"
+            id="close-sidebar-button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        <nav class="flex-1 px-2 py-4 overflow-y-auto">
+          <a href="/admin/shipments" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 text-white/80 hover:bg-primary-700 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Shipments
+          </a>
+          <a href="/admin/create" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 bg-primary-700 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Create Shipment
+          </a>
+        </nav>
+        
+        <div class="p-4">
+          <button id="mobile-logout-button" class="flex items-center w-full px-4 py-2 text-base font-medium text-white/80 hover:text-white rounded-md hover:bg-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Desktop sidebar -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+      <div class="flex flex-col flex-grow bg-primary text-white">
+        <div class="h-16 flex items-center px-4">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path d="M10 17h4V5H2v12h3m10 0h7V9h-7"></path>
+              <line x1="10" y1="17" x2="15" y2="17"></line>
+              <path d="M2 9h12"></path>
+            </svg>
+            <span class="text-xl font-bold">Movelinx Admin</span>
+          </div>
+        </div>
+        
+        <nav class="flex-1 px-2 py-4 overflow-y-auto">
+          <a href="/admin/shipments" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 text-white/80 hover:bg-primary-700 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            Shipments
+          </a>
+          <a href="/admin/create" class="flex items-center px-4 py-3 text-base font-medium rounded-md mb-1 bg-primary-700 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Create Shipment
+          </a>
+        </nav>
+        
+        <div class="p-4">
+          <button id="desktop-logout-button" class="flex items-center w-full px-4 py-2 text-base font-medium text-white/80 hover:text-white rounded-md hover:bg-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 h-5 w-5">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="lg:pl-64 flex flex-col flex-1">
+      <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+        <button
+          type="button"
+          id="open-sidebar-button"
+          class="px-4 text-gray-500 lg:hidden"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="flex flex-1 justify-between px-4">
+          <div class="flex flex-1">
+            <div class="flex w-full md:ml-0">
+              <div class="relative w-full max-w-md">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search shipments..."
+                  class="block w-full rounded-md border-0 py-2 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="ml-4 flex items-center md:ml-6">
+            <button class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </button>
+            
+            <div class="relative ml-3">
+              <div>
+                <button class="flex max-w-xs items-center rounded-full bg-white text-sm">
+                  <img
+                    class="h-8 w-8 rounded-full"
+                    src="https://placehold.co/100x100"
+                    alt="User avatar"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <main class="py-6">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">Create Shipment</h1>
+            <p class="mt-1 text-sm text-gray-500">Create a new shipment in the system</p>
+          </div>
+
+          <div class="bg-white shadow rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+              <form id="create-shipment-form" class="space-y-8">
+                <!-- Sender Information -->
+                <div>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Sender Information</h3>
+                  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-3">
+                      <label for="sender-name" class="block text-sm font-medium text-gray-700">
+                        Full Name
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="sender-name"
+                          name="sender-name"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="sender-phone" class="block text-sm font-medium text-gray-700">
+                        Phone Number
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="tel"
+                          id="sender-phone"
+                          name="sender-phone"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label for="sender-email" class="block text-sm font-medium text-gray-700">
+                        Email Address (Optional)
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="email"
+                          id="sender-email"
+                          name="sender-email"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label for="sender-street" class="block text-sm font-medium text-gray-700">
+                        Street Address
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="sender-street"
+                          name="sender-street"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="sender-city" class="block text-sm font-medium text-gray-700">
+                        City
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="sender-city"
+                          name="sender-city"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="sender-country" class="block text-sm font-medium text-gray-700">
+                        Country
+                      </label>
+                      <div class="mt-1">
+                        <select
+                          id="sender-country"
+                          name="sender-country"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        >
+                          <option value="">Select a country</option>
+                          <option value="US">United States</option>
+                          <option value="CA">Canada</option>
+                          <option value="MX">Mexico</option>
+                          <option value="UK">United Kingdom</option>
+                          <option value="FR">France</option>
+                          <option value="DE">Germany</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Receiver Information -->
+                <div>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Receiver Information</h3>
+                  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-3">
+                      <label for="receiver-name" class="block text-sm font-medium text-gray-700">
+                        Full Name
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="receiver-name"
+                          name="receiver-name"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="receiver-phone" class="block text-sm font-medium text-gray-700">
+                        Phone Number
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="tel"
+                          id="receiver-phone"
+                          name="receiver-phone"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label for="receiver-street" class="block text-sm font-medium text-gray-700">
+                        Street Address
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="receiver-street"
+                          name="receiver-street"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="receiver-city" class="block text-sm font-medium text-gray-700">
+                        City
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="text"
+                          id="receiver-city"
+                          name="receiver-city"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="receiver-country" class="block text-sm font-medium text-gray-700">
+                        Country
+                      </label>
+                      <div class="mt-1">
+                        <select
+                          id="receiver-country"
+                          name="receiver-country"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        >
+                          <option value="">Select a country</option>
+                          <option value="US">United States</option>
+                          <option value="CA">Canada</option>
+                          <option value="MX">Mexico</option>
+                          <option value="UK">United Kingdom</option>
+                          <option value="FR">France</option>
+                          <option value="DE">Germany</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Package Details -->
+                <div>
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Package Details</h3>
+                  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-3">
+                      <label for="package-type" class="block text-sm font-medium text-gray-700">
+                        Package Type
+                      </label>
+                      <div class="mt-1">
+                        <select
+                          id="package-type"
+                          name="package-type"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          required
+                        >
+                          <option value="">Select package type</option>
+                          <option value="document">Document</option>
+                          <option value="small-parcel">Small Parcel</option>
+                          <option value="medium-box">Medium Box</option>
+                          <option value="large-box">Large Box</option>
+                          <option value="pallet">Pallet</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="weight" class="block text-sm font-medium text-gray-700">
+                        Weight (kg)
+                      </label>
+                      <div class="mt-1">
+                        <input
+                          type="number"
+                          id="weight"
+                          name="weight"
+                          step="0.01"
+                          min="0"
+                          class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label for="dimensions" class="block text-sm font-medium text-gray-700">
+                        Dimensions (Optional)
+                      </label>
+                      <div class="mt-1 grid grid-cols-3 gap-4">
+                        <div>
+                          <label for="length" class="sr-only">
+                            Length (cm)
+                          </label>
+                          <input
+                            type="number"
+                            id="length"
+                            name="length"
+                            placeholder="Length (cm)"
+                            min="0"
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          />
+                        </div>
+                        <div>
+                          <label for="width" class="sr-only">
+                            Width (cm)
+                          </label>
+                          <input
+                            type="number"
+                            id="width"
+                            name="width"
+                            placeholder="Width (cm)"
+                            min="0"
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          />
+                        </div>
+                        <div>
+                          <label for="height" class="sr-only">
+                            Height (cm)
+                          </label>
+                          <input
+                            type="number"
+                            id="height"
+                            name="height"
+                            placeholder="Height (cm)"
+                            min="0"
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label for="declared-value" class="block text-sm font-medium text-gray-700">
+                        Declared Value (Optional)
+                      </label>
+                      <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <span class="text-gray-500 sm:text-sm">$</span>
+                        </div>
+                        <input
+                          type="number"
+                          id="declared-value"
+                          name="declared-value"
+                          min="0"
+                          step="0.01"
+                          class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5"
+                          placeholder="0.00"
+                        />
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                          <span class="text-gray-500 sm:text-sm">USD</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Payment & Clearance Information -->
+                <div class="pt-8 border-t border-gray-200">
+                  <h3 class="text-lg font-medium leading-6 text-gray-900 mb-6">Payment & Clearance Information</h3>
+                  <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                    <!-- Payment Information -->
+                    <div>
+                      <h4 class="text-base font-semibold text-gray-900 mb-4">Payment Information</h4>
+                      <div class="space-y-4">
+                        <div>
+                          <label for="invoice-number" class="block text-sm font-medium text-gray-700">
+                            Invoice Number
+                          </label>
+                          <div class="mt-1">
+                            <input
+                              type="text"
+                              id="invoice-number"
+                              name="invoice-number"
+                              placeholder="e.g. INV-ASIA7890"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="payment-status" class="block text-sm font-medium text-gray-700">
+                            Payment Status
+                          </label>
+                          <div class="mt-1">
+                            <select
+                              id="payment-status"
+                              name="payment-status"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            >
+                              <option value="">Select status</option>
+                              <option value="paid">Paid</option>
+                              <option value="pending">Pending</option>
+                              <option value="unpaid">Unpaid</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="payment-method" class="block text-sm font-medium text-gray-700">
+                            Payment Method
+                          </label>
+                          <div class="mt-1">
+                            <input
+                              type="text"
+                              id="payment-method"
+                              name="payment-method"
+                              placeholder="e.g. Corporate Account"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="payment-date" class="block text-sm font-medium text-gray-700">
+                            Payment Date
+                          </label>
+                          <div class="mt-1">
+                            <input
+                              type="date"
+                              id="payment-date"
+                              name="payment-date"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-200">
+                          <h5 class="text-sm font-semibold text-gray-900 mb-3">Payment Breakdown</h5>
+                          <div class="space-y-3">
+                            <div>
+                              <label for="shipping-cost" class="block text-sm font-medium text-gray-700">
+                                Shipping Cost
+                              </label>
+                              <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span class="text-gray-500 sm:text-sm">¥</span>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="shipping-cost"
+                                  name="shipping-cost"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="0.00"
+                                  class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5"
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label for="insurance" class="block text-sm font-medium text-gray-700">
+                                Insurance
+                              </label>
+                              <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span class="text-gray-500 sm:text-sm">¥</span>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="insurance"
+                                  name="insurance"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="0.00"
+                                  class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5"
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label for="taxes" class="block text-sm font-medium text-gray-700">
+                                Taxes
+                              </label>
+                              <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span class="text-gray-500 sm:text-sm">¥</span>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="taxes"
+                                  name="taxes"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="0.00"
+                                  class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5"
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label for="additional-fees" class="block text-sm font-medium text-gray-700">
+                                Additional Fees
+                              </label>
+                              <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span class="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="additional-fees"
+                                  name="additional-fees"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="0.00"
+                                  class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5"
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label for="total-amount" class="block text-sm font-medium text-gray-700">
+                                Total Amount
+                              </label>
+                              <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <span class="text-gray-500 sm:text-sm">¥</span>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="total-amount"
+                                  name="total-amount"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="0.00"
+                                  class="focus:ring-primary focus:border-primary block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2.5 font-semibold"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Customs Clearance Information -->
+                    <div>
+                      <h4 class="text-base font-semibold text-gray-900 mb-4">Customs Clearance Information</h4>
+                      <div class="space-y-4">
+                        <div>
+                          <label for="clearance-status" class="block text-sm font-medium text-gray-700">
+                            Clearance Status
+                          </label>
+                          <div class="mt-1">
+                            <select
+                              id="clearance-status"
+                              name="clearance-status"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            >
+                              <option value="">Select status</option>
+                              <option value="in-progress">In Progress</option>
+                              <option value="completed">Completed</option>
+                              <option value="pending">Pending</option>
+                              <option value="rejected">Rejected</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="declaration-number" class="block text-sm font-medium text-gray-700">
+                            Declaration Number
+                          </label>
+                          <div class="mt-1">
+                            <input
+                              type="text"
+                              id="declaration-number"
+                              name="declaration-number"
+                              placeholder="e.g. EXP/23/089754"
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="clearance-notes" class="block text-sm font-medium text-gray-700">
+                            Notes
+                          </label>
+                          <div class="mt-1">
+                            <textarea
+                              id="clearance-notes"
+                              name="clearance-notes"
+                              rows="4"
+                              placeholder="Documentation verified. Awaiting physical inspection clearance."
+                              class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md py-2.5 px-3"
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-5 border-t border-gray-200">
+                  <div class="flex justify-end">
+                    <button
+                      type="button"
+                      id="cancel-button"
+                      class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      id="submit-button"
+                      class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    >
+                      Create Shipment
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Success Confirmation Modal -->
+  <div id="success-modal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="success-modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div id="success-modal-backdrop" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-green-600">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="success-modal-title">
+                Shipment Created Successfully!
+              </h3>
+              <div class="mt-4">
+                <div class="bg-gray-50 rounded-lg p-4 space-y-3">
+                  <div>
+                    <p class="text-sm font-medium text-gray-500">Tracking Number</p>
+                    <p id="success-tracking-id" class="mt-1 text-lg font-semibold text-primary"></p>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <p class="text-sm font-medium text-gray-500">Status</p>
+                      <p id="success-status" class="mt-1 text-sm text-gray-900"></p>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-500">Created At</p>
+                      <p id="success-created-at" class="mt-1 text-sm text-gray-900"></p>
+                    </div>
+                  </div>
+                  <div class="border-t border-gray-200 pt-3">
+                    <p class="text-sm font-medium text-gray-500 mb-2">Shipment Details</p>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p class="text-gray-500">From</p>
+                        <p id="success-sender" class="font-medium text-gray-900"></p>
+                      </div>
+                      <div>
+                        <p class="text-gray-500">To</p>
+                        <p id="success-receiver" class="font-medium text-gray-900"></p>
+                      </div>
+                      <div>
+                        <p class="text-gray-500">Package Type</p>
+                        <p id="success-package-type" class="font-medium text-gray-900"></p>
+                      </div>
+                      <div>
+                        <p class="text-gray-500">Weight</p>
+                        <p id="success-weight" class="font-medium text-gray-900"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button
+            type="button"
+            id="view-shipment-button"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            View Shipment
+          </button>
+          <button
+            type="button"
+            id="close-success-modal"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            Back to Shipments
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/create.js"></script>
+</body>
+</html>
