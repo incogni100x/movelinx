@@ -55,6 +55,10 @@
     {
       "source": "/admin/create",
       "destination": "/admin/create.html"
+    },
+    {
+      "source": "/admin/shipment-details",
+      "destination": "/admin/shipment-details.html"
     }
   ],
   "headers": [

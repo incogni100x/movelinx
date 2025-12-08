@@ -52,6 +52,7 @@ export default defineConfig({
             '/admin': '/admin/shipments.html',
             '/admin/shipments': '/admin/shipments.html',
             '/admin/create': '/admin/create.html',
+            '/admin/shipment-details': '/admin/shipment-details.html',
           };
           
           if (urlMap[req.url] && !req.url.includes('.')) {
