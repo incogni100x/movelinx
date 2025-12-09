@@ -309,28 +309,109 @@ function loadShipmentData(shipment) {
   updateProgressSteps(shipment.status);
 }
 
-// Load timeline data
-function loadTimelineData(timelineData, currentStatus) {
+// Get default location and notes for a status
+function getDefaultStatusLocationAndNotes(status, shipment) {
+  if (!shipment) return { location: 'N/A', notes: '' };
+  
+  switch (status) {
+    case 'Processing':
+      return {
+        location: shipment.sender_city || 'N/A',
+        notes: 'Shipment created and registered in the system'
+      };
+    case 'Picked Up':
+      return {
+        location: shipment.sender_city || 'N/A',
+        notes: 'Package collected from sender'
+      };
+    case 'In Transit':
+      return {
+        location: `En route to ${shipment.receiver_city || 'destination'}`,
+        notes: `Package has departed from ${shipment.sender_city || 'origin'} hub and is en route to destination`
+      };
+    case 'At Destination':
+      return {
+        location: shipment.receiver_city || 'N/A',
+        notes: `Package will arrive at ${shipment.receiver_city || 'destination'} distribution hub`
+      };
+    case 'Delivered':
+      return {
+        location: shipment.receiver_street ? `${shipment.receiver_street}, ${shipment.receiver_city}` : (shipment.receiver_city || 'N/A'),
+        notes: 'Package will be delivered to recipient\'s address'
+      };
+    default:
+      return { location: 'N/A', notes: '' };
+  }
+}
+
+// Load timeline data - shows all statuses (completed, current, upcoming)
+function loadTimelineData(timelineData, currentStatus, shipment) {
   const timeline = document.getElementById('timeline-list');
   if (!timeline) return;
   
   timeline.innerHTML = '';
   
-  if (timelineData.length === 0) {
-    timeline.innerHTML = '<li class="text-sm text-gray-500">No timeline events yet.</li>';
-    return;
-  }
+  // Define all possible statuses in order
+  const allStatuses = ['Processing', 'Picked Up', 'In Transit', 'At Destination', 'Delivered'];
   
-  // Sort by date (oldest first for display)
-  const sortedTimeline = [...timelineData].sort((a, b) => 
-    new Date(a.created_at) - new Date(b.created_at)
-  );
+  // Create a map of status to timeline event data
+  const timelineMap = {};
+  timelineData.forEach(event => {
+    timelineMap[event.status] = event;
+  });
   
-  sortedTimeline.forEach((event, index) => {
-    const isLast = index === sortedTimeline.length - 1;
-    const isCurrent = event.status === currentStatus;
-    const iconData = getStatusIconAndColor(event.status);
-    const formattedDate = formatDate(event.created_at);
+  // Determine the index of current status
+  const currentStatusIndex = allStatuses.indexOf(currentStatus);
+  
+  // Generate timeline items for all statuses
+  allStatuses.forEach((status, index) => {
+    const isLast = index === allStatuses.length - 1;
+    const isCurrent = status === currentStatus;
+    const isCompleted = currentStatusIndex > index;
+    const isUpcoming = currentStatusIndex < index;
+    
+    // Get timeline event data if it exists
+    const eventData = timelineMap[status];
+    
+    // Determine icon and styling
+    let iconData;
+    let dateText;
+    let locationText;
+    let notesText;
+    
+    // Special case: Delivered always uses green checkmark and shows "Current" tag
+    if (status === 'Delivered' && isCurrent) {
+      iconData = getStatusIconAndColor(status, false);
+      dateText = eventData ? formatDate(eventData.created_at) : 'N/A';
+      locationText = eventData?.location || getDefaultStatusLocationAndNotes(status, shipment).location;
+      notesText = eventData?.notes || getDefaultStatusLocationAndNotes(status, shipment).notes;
+    } else if (isCompleted) {
+      // Completed status - use green checkmark
+      iconData = getStatusIconAndColor(status, false);
+      dateText = eventData ? formatDate(eventData.created_at) : 'N/A';
+      locationText = eventData?.location || getDefaultStatusLocationAndNotes(status, shipment).location;
+      notesText = eventData?.notes || getDefaultStatusLocationAndNotes(status, shipment).notes;
+    } else if (isCurrent) {
+      // Current status - use clock icon with primary color and "Current" tag
+      iconData = {
+        svg: '<circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>',
+        bgColor: 'bg-primary/20',
+        iconColor: 'text-primary'
+      };
+      dateText = eventData ? formatDate(eventData.created_at) : `Expected ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+      locationText = eventData?.location || getDefaultStatusLocationAndNotes(status, shipment).location;
+      notesText = eventData?.notes || getDefaultStatusLocationAndNotes(status, shipment).notes;
+    } else {
+      // Upcoming/pending status - use clock icon (not gray circle)
+      iconData = {
+        svg: '<circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>',
+        bgColor: 'bg-gray-100',
+        iconColor: 'text-gray-400'
+      };
+      dateText = 'Pending';
+      locationText = getDefaultStatusLocationAndNotes(status, shipment).location;
+      notesText = getDefaultStatusLocationAndNotes(status, shipment).notes;
+    }
     
     const eventEl = document.createElement('li');
     eventEl.innerHTML = `
@@ -347,12 +428,12 @@ function loadTimelineData(timelineData, currentStatus) {
           <div class="min-w-0 flex-1">
             <div>
               <div class="text-sm">
-                <span class="font-medium ${isCurrent ? 'text-primary' : 'text-gray-900'}">${event.status}</span>
+                <span class="font-medium ${isCurrent ? 'text-primary' : (isUpcoming ? 'text-gray-500' : 'text-gray-900')}">${status}</span>
                 ${isCurrent ? '<span class="ml-2 font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full text-xs">Current</span>' : ''}
               </div>
-              <p class="mt-0.5 text-sm text-gray-500">${formattedDate} • ${event.location || 'N/A'}</p>
+              <p class="mt-0.5 text-sm text-gray-500">${dateText}${locationText !== 'N/A' ? ` • ${locationText}` : ''}</p>
             </div>
-            ${event.notes ? `<div class="mt-2 text-sm text-gray-700 max-w-md"><p>${event.notes}</p></div>` : ''}
+            ${notesText ? `<div class="mt-2 text-sm ${isUpcoming ? 'text-gray-500' : 'text-gray-700'} max-w-md break-words overflow-wrap-anywhere"><p>${notesText}</p></div>` : ''}
           </div>
         </div>
       </div>
@@ -412,7 +493,7 @@ async function performTrackingSearch(trackingNumber) {
         
         // Fetch and load timeline
         const timelineData = await fetchTimelineData(shipment.id);
-        loadTimelineData(timelineData, shipment.status);
+        loadTimelineData(timelineData, shipment.status, shipment);
       }
     } catch (error) {
       console.error('Error tracking shipment:', error);
