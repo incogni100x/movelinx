@@ -176,6 +176,12 @@ function loadShipments(shipmentsData = shipments) {
   const tableBody = document.getElementById('shipments-table-body');
   if (!tableBody) return;
   
+  // Remove loading row
+  const loadingRow = document.getElementById('loading-row');
+  if (loadingRow) {
+    loadingRow.remove();
+  }
+  
   tableBody.innerHTML = '';
   
   if (shipmentsData.length === 0) {
@@ -238,45 +244,6 @@ function loadShipments(shipmentsData = shipments) {
   if (totalCount) totalCount.textContent = shipments.length;
 }
 
-// Filter shipments based on search term, status, and date range
-function filterShipments() {
-  const searchInput = document.getElementById('search');
-  const statusSelect = document.getElementById('status');
-  const dateFromInput = document.getElementById('date-from');
-  const dateToInput = document.getElementById('date-to');
-  
-  if (!searchInput || !statusSelect || !dateFromInput || !dateToInput) return;
-  
-  const searchTerm = searchInput.value.toLowerCase();
-  const statusFilter = statusSelect.value;
-  const dateFrom = dateFromInput.value;
-  const dateTo = dateToInput.value;
-  
-  const filteredShipments = shipments.filter(shipment => {
-    const trackingId = (shipment.tracking_id || '').toLowerCase();
-    const senderName = (shipment.sender_name || '').toLowerCase();
-    const receiverName = (shipment.receiver_name || '').toLowerCase();
-    
-    const matchesSearch =
-      trackingId.includes(searchTerm) ||
-      senderName.includes(searchTerm) ||
-      receiverName.includes(searchTerm);
-    
-    const matchesStatus = statusFilter === 'all' || shipment.status === statusFilter;
-    
-    // Date filtering
-    let matchesDateRange = true;
-    if (dateFrom || dateTo) {
-      const shipmentDate = shipment.created_at ? new Date(shipment.created_at).toISOString().split('T')[0] : '';
-      if (dateFrom && shipmentDate < dateFrom) matchesDateRange = false;
-      if (dateTo && shipmentDate > dateTo) matchesDateRange = false;
-    }
-    
-    return matchesSearch && matchesStatus && matchesDateRange;
-  });
-  
-  loadShipments(filteredShipments);
-}
 
 // Mobile sidebar toggle
 function setupEventListeners() {
@@ -317,39 +284,6 @@ function setupEventListeners() {
     }
   });
   
-  // Filter functionality
-  const searchInput = document.getElementById('search');
-  const statusSelect = document.getElementById('status');
-  const dateFromInput = document.getElementById('date-from');
-  const dateToInput = document.getElementById('date-to');
-  const resetFiltersBtn = document.getElementById('reset-filters');
-  
-  if (searchInput) {
-    searchInput.addEventListener('input', filterShipments);
-  }
-  
-  if (statusSelect) {
-    statusSelect.addEventListener('change', filterShipments);
-  }
-  
-  if (dateFromInput) {
-    dateFromInput.addEventListener('change', filterShipments);
-  }
-  
-  if (dateToInput) {
-    dateToInput.addEventListener('change', filterShipments);
-  }
-  
-  // Reset filters
-  if (resetFiltersBtn) {
-    resetFiltersBtn.addEventListener('click', function() {
-      if (searchInput) searchInput.value = '';
-      if (statusSelect) statusSelect.value = 'all';
-      if (dateFromInput) dateFromInput.value = '';
-      if (dateToInput) dateToInput.value = '';
-      filterShipments();
-    });
-  }
   
   // Delete shipment handlers (delegated event listener)
   const tableBody = document.getElementById('shipments-table-body');
@@ -384,9 +318,6 @@ function setupEventListeners() {
             
             // Update stats
             updateStatsCards(shipments);
-            
-            // Reapply filters if active
-            filterShipments();
           } catch (error) {
             console.error('Error deleting shipment:', error);
             alert('Failed to delete shipment. Please try again.');
