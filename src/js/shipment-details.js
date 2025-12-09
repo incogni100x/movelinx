@@ -233,11 +233,11 @@ function loadShipmentData(shipment) {
   if (paymentStatusEl) paymentStatusEl.textContent = formatPaymentStatus(shipment.payment_status);
   if (paymentMethodEl) paymentMethodEl.textContent = shipment.payment_method || 'N/A';
   if (paymentDateEl) paymentDateEl.textContent = shipment.payment_date ? formatDate(shipment.payment_date) : 'N/A';
-  if (shippingCostEl) shippingCostEl.textContent = shipment.shipping_cost_yen ? `¥${shipment.shipping_cost_yen}` : 'N/A';
-  if (insuranceEl) insuranceEl.textContent = shipment.insurance_yen ? `¥${shipment.insurance_yen}` : 'N/A';
-  if (taxesEl) taxesEl.textContent = shipment.taxes_yen ? `¥${shipment.taxes_yen}` : 'N/A';
+  if (shippingCostEl) shippingCostEl.textContent = shipment.shipping_cost_yen ? `$${shipment.shipping_cost_yen}` : 'N/A';
+  if (insuranceEl) insuranceEl.textContent = shipment.insurance_yen ? `$${shipment.insurance_yen}` : 'N/A';
+  if (taxesEl) taxesEl.textContent = shipment.taxes_yen ? `$${shipment.taxes_yen}` : 'N/A';
   if (additionalFeesEl) additionalFeesEl.textContent = shipment.additional_fees_usd ? `$${shipment.additional_fees_usd}` : 'N/A';
-  if (totalAmountEl) totalAmountEl.textContent = shipment.total_amount_yen ? `¥${shipment.total_amount_yen}` : 'N/A';
+  if (totalAmountEl) totalAmountEl.textContent = shipment.total_amount_yen ? `$${shipment.total_amount_yen}` : 'N/A';
   
   // Update clearance information
   const clearanceStatusEl = document.getElementById('clearance-status-display');
