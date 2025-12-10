@@ -545,20 +545,91 @@
   </div>
 </footer>
 
-<script>
+<script type="module">
+  import { supabase } from '/src/js/client.js'
+
   document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+    const contactForm = document.getElementById('contactForm')
+    const submitButton = contactForm.querySelector('button[type="submit"]')
+    const originalButtonText = submitButton.textContent
+
+    // Create message container
+    const messageContainer = document.createElement('div')
+    messageContainer.id = 'form-message'
+    messageContainer.className = 'hidden rounded-md p-4 mb-6'
+    contactForm.insertBefore(messageContainer, contactForm.firstChild)
+
+    function showMessage(message, isError = false) {
+      messageContainer.textContent = message
+      messageContainer.className = `rounded-md p-4 mb-6 ${
+        isError 
+          ? 'bg-red-50 text-red-800 border border-red-200' 
+          : 'bg-green-50 text-green-800 border border-green-200'
+      }`
+      messageContainer.classList.remove('hidden')
       
-      // In a real application, you would send the form data to your server here
-      // For this example, we'll just show a success message
-      
-      alert('Thank you for your message! We will get back to you soon.');
-      contactForm.reset();
-    });
-  });
+      // Scroll to message
+      messageContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+
+    function hideMessage() {
+      messageContainer.classList.add('hidden')
+    }
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault()
+      hideMessage()
+
+      // Disable submit button
+      submitButton.disabled = true
+      submitButton.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Sending...
+      `
+
+      // Collect form data
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim() || undefined,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value.trim()
+      }
+
+      try {
+        // Call Supabase Edge Function
+        const { data, error } = await supabase.functions.invoke('hyper-endpoint', {
+          body: formData
+        })
+
+        if (error) {
+          throw error
+        }
+
+        if (data.error) {
+          throw new Error(data.message || data.error)
+        }
+
+        // Success
+        showMessage('Thank you for your message! We will get back to you soon.', false)
+        contactForm.reset()
+
+      } catch (error) {
+        console.error('Error submitting form:', error)
+        showMessage(
+          error.message || 'Failed to send message. Please try again later or contact us directly.',
+          true
+        )
+      } finally {
+        // Re-enable submit button
+        submitButton.disabled = false
+        submitButton.textContent = originalButtonText
+      }
+    })
+  })
 </script>
 </body>
 </html>
